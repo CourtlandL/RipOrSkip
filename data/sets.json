@@ -1,5 +1,5 @@
 {
-    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are the percent of packs containing each rarity, from the study in pullRateSource. A rate given as {percent, match} counts cards whose product name contains \u0027match\u0027 (e.g. Master Ball Pattern) instead of matching on rarity. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set.",
+    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are the percent of packs containing each rarity, from the study in pullRateSource. A rate given as {percent, match} counts cards whose product name contains \u0027match\u0027 (e.g. Master Ball Pattern) instead of matching on rarity. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set. Products with kind \u0027collection\u0027 only count their booster packs (promos and accessories aren\u0027t valued). A product\u0027s optional \u0027contents\u0027 lists packs by set (plus \u0027bonus\u0027 guaranteed cards) when it isn\u0027t just N packs of its own set; \u0027priceGroupId\u0027 says which TCGplayer group lists its price. \u0027collections\u0027 holds products whose packs span several sets.",
     "sets":  [
                  {
                      "id":  "30th-celebration",
@@ -49,6 +49,51 @@
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
                                           "productId":  704144
+                                      },
+                                      {
+                                          "id":  "upc-day",
+                                          "name":  "Ultra-Premium Collection (Day)",
+                                          "packs":  30,
+                                          "productId":  704190,
+                                          "kind":  "collection",
+                                          "contents":  [
+                                                           {
+                                                               "set":  "30th-celebration",
+                                                               "packs":  29,
+                                                               "bonus":  [
+                                                                             {
+                                                                                 "rarity":  "Classic Collection",
+                                                                                 "count":  3
+                                                                             }
+                                                                         ]
+                                                           }
+                                                       ]
+                                      },
+                                      {
+                                          "id":  "upc-night",
+                                          "name":  "Ultra-Premium Collection (Night)",
+                                          "packs":  30,
+                                          "productId":  704191,
+                                          "kind":  "collection",
+                                          "contents":  [
+                                                           {
+                                                               "set":  "30th-celebration",
+                                                               "packs":  29,
+                                                               "bonus":  [
+                                                                             {
+                                                                                 "rarity":  "Classic Collection",
+                                                                                 "count":  3
+                                                                             }
+                                                                         ]
+                                                           }
+                                                       ]
+                                      },
+                                      {
+                                          "id":  "ditto",
+                                          "name":  "Ditto Premium Collection",
+                                          "packs":  8,
+                                          "productId":  704189,
+                                          "kind":  "collection"
                                       }
                                   ]
                  },
@@ -252,6 +297,13 @@
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
                                           "productId":  668497
+                                      },
+                                      {
+                                          "id":  "focused-fighters",
+                                          "name":  "Focused Fighters Premium Collection",
+                                          "packs":  14,
+                                          "productId":  706959,
+                                          "kind":  "collection"
                                       }
                                   ]
                  },
@@ -621,6 +673,13 @@
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
                                           "productId":  593324
+                                      },
+                                      {
+                                          "id":  "spc",
+                                          "name":  "Super-Premium Collection",
+                                          "packs":  15,
+                                          "productId":  622770,
+                                          "kind":  "collection"
                                       }
                                   ]
                  },
@@ -929,6 +988,20 @@
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
                                           "productId":  528039
+                                      },
+                                      {
+                                          "id":  "premium",
+                                          "name":  "Premium Collection",
+                                          "packs":  8,
+                                          "productId":  528079,
+                                          "kind":  "collection"
+                                      },
+                                      {
+                                          "id":  "great-tusk-iron-treads",
+                                          "name":  "Great Tusk \u0026 Iron Treads Premium Collection",
+                                          "packs":  11,
+                                          "productId":  665113,
+                                          "kind":  "collection"
                                       }
                                   ]
                  },
@@ -1027,6 +1100,20 @@
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
                                           "productId":  501999
+                                      },
+                                      {
+                                          "id":  "upc",
+                                          "name":  "Ultra-Premium Collection",
+                                          "packs":  16,
+                                          "productId":  502005,
+                                          "kind":  "collection"
+                                      },
+                                      {
+                                          "id":  "blooming-waters",
+                                          "name":  "Blooming Waters Premium Collection",
+                                          "packs":  12,
+                                          "productId":  609597,
+                                          "kind":  "collection"
                                       }
                                   ]
                  },
@@ -1186,5 +1273,69 @@
                                       }
                                   ]
                  }
-             ]
+             ],
+    "collections":  [
+                        {
+                            "id":  "mega-charizard-x-upc",
+                            "name":  "Mega Charizard X ex UPC",
+                            "year":  2025,
+                            "products":  [
+                                             {
+                                                 "id":  "upc",
+                                                 "name":  "Ultra-Premium Collection",
+                                                 "packs":  18,
+                                                 "productId":  654213,
+                                                 "kind":  "collection",
+                                                 "contents":  [
+                                                                  {
+                                                                      "set":  "phantasmal-flames",
+                                                                      "packs":  4
+                                                                  },
+                                                                  {
+                                                                      "set":  "journey-together",
+                                                                      "packs":  4
+                                                                  },
+                                                                  {
+                                                                      "set":  "mega-evolution",
+                                                                      "packs":  4
+                                                                  },
+                                                                  {
+                                                                      "set":  "destined-rivals",
+                                                                      "packs":  4
+                                                                  },
+                                                                  {
+                                                                      "set":  "surging-sparks",
+                                                                      "packs":  2
+                                                                  }
+                                                              ],
+                                                 "priceGroupId":  2374
+                                             }
+                                         ]
+                        },
+                        {
+                            "id":  "unova-heavy-hitters",
+                            "name":  "Unova Heavy Hitters",
+                            "year":  2025,
+                            "products":  [
+                                             {
+                                                 "id":  "premium",
+                                                 "name":  "Premium Collection",
+                                                 "packs":  12,
+                                                 "productId":  668632,
+                                                 "kind":  "collection",
+                                                 "contents":  [
+                                                                  {
+                                                                      "set":  "black-bolt",
+                                                                      "packs":  6
+                                                                  },
+                                                                  {
+                                                                      "set":  "white-flare",
+                                                                      "packs":  6
+                                                                  }
+                                                              ],
+                                                 "priceGroupId":  24325
+                                             }
+                                         ]
+                        }
+                    ]
 }

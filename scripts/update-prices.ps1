@@ -31,6 +31,52 @@ if ($ListSealed) {
   return
 }
 
+# Market price per product. Cards prefer the Holofoil printing; sealed items only have Normal.
+function Get-PriceMap($prices) {
+  $map = @{}
+  foreach ($p in $prices) {
+    if ($null -eq $p.marketPrice) { continue }
+    if ($p.subTypeName -eq 'Holofoil' -or -not $map.ContainsKey($p.productId)) {
+      $map[$p.productId] = [double]$p.marketPrice
+    }
+  }
+  $map
+}
+
+# Prices for products listed outside their set's own group (priceGroupId), fetched once per group.
+$groupPriceCache = @{}
+function Get-GroupPrices($groupId) {
+  if (-not $groupPriceCache.ContainsKey($groupId)) {
+    $groupPriceCache[$groupId] = Get-PriceMap (Get-Json "$base/$groupId/prices")
+  }
+  $groupPriceCache[$groupId]
+}
+
+# Sealed products with prices. Every product gets `contents` (packs by set, plus any
+# guaranteed bonus cards) so the site can treat single- and multi-set products alike.
+function Get-Sealed($items, $priceById, $ownerId, $label) {
+  $sealed = @()
+  foreach ($item in $items) {
+    $map = if ($item.priceGroupId) { Get-GroupPrices $item.priceGroupId } else { $priceById }
+    if (-not $map.ContainsKey($item.productId)) {
+      Write-Warning "$label $($item.name): no market price, skipping"
+      continue
+    }
+    $contents = if ($item.contents) { @($item.contents) } else { @([ordered]@{ set = $ownerId; packs = $item.packs }) }
+    $product = [ordered]@{
+      id = $item.id
+      name = $item.name
+      packs = $item.packs
+      productId = $item.productId
+      price = $map[$item.productId]
+      contents = @($contents) # keep a one-item list as a JSON array
+    }
+    if ($item.kind) { $product.kind = $item.kind }
+    $sealed += $product
+  }
+  , $sealed
+}
+
 $config = Get-Content (Join-Path $root 'data/sets.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $sets = @()
 
@@ -44,16 +90,7 @@ foreach ($set in $config.sets) {
     $products += Get-Json "$base/$groupId/products"
     $prices += Get-Json "$base/$groupId/prices"
   }
-
-  # Market price per product. Cards prefer the Holofoil printing; sealed items only have Normal.
-  $priceById = @{}
-  foreach ($p in $prices) {
-    if ($null -eq $p.marketPrice) { continue }
-    $existing = $priceById[$p.productId]
-    if ($p.subTypeName -eq 'Holofoil' -or -not $existing) {
-      $priceById[$p.productId] = [double]$p.marketPrice
-    }
-  }
+  $priceById = Get-PriceMap $prices
 
   $rarities = @()
   foreach ($rate in $set.pullRates.PSObject.Properties) {
@@ -86,20 +123,7 @@ foreach ($set in $config.sets) {
     }
   }
 
-  $sealed = @()
-  foreach ($item in $set.products) {
-    if (-not $priceById.ContainsKey($item.productId)) {
-      Write-Warning "$($set.name) $($item.name): no market price, skipping"
-      continue
-    }
-    $sealed += [ordered]@{
-      id = $item.id
-      name = $item.name
-      packs = $item.packs
-      productId = $item.productId
-      price = $priceById[$item.productId]
-    }
-  }
+  $sealed = Get-Sealed $set.products $priceById $set.id $set.name
 
   $sets += [ordered]@{
     id = $set.id
@@ -111,6 +135,19 @@ foreach ($set in $config.sets) {
     bulkValuePerPack = $set.bulkValuePerPack
     rarities = $rarities
     products = $sealed
+  }
+}
+
+# Multi-set collections: no rarities of their own; their odds come from the sets in `contents`.
+foreach ($collection in $config.collections) {
+  Write-Host "Updating $($collection.name)..."
+  $sets += [ordered]@{
+    id = $collection.id
+    name = $collection.name
+    series = 'Multi-set collections'
+    year = $collection.year
+    rarities = @()
+    products = Get-Sealed $collection.products @{} $collection.id $collection.name
   }
 }
 

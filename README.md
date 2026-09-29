@@ -20,6 +20,11 @@ Prices are TCGplayer market prices from [TCGCSV](https://tcgcsv.com), which repu
 - `scripts/update-prices.ps1` — reads `data/sets.json`, fetches card and sealed prices, writes `js/data.js`
 - `js/data.js` — **generated**, don't edit by hand
 
+Premium collections (SPCs, UPCs, Premium Collections) are products with `"kind": "collection"`; only their
+booster packs are valued. A product whose packs aren't just N packs of its own set lists them in `contents`
+(e.g. the 30th Celebration UPC's bonus Classic Collection pack). Collections mixing several sets live under
+`collections` in `data/sets.json`; ones whose pack mix varies by copy (e.g. Charizard ex SPC) are left out.
+
 To add a set: find its group ID at https://tcgcsv.com/tcgplayer/3/groups, list its sealed products with
 `./scripts/update-prices.ps1 -ListSealed <groupId>`, add an entry to `data/sets.json`, then run
 `./scripts/update-prices.ps1`.

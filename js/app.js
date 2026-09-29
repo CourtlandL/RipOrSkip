@@ -2,6 +2,13 @@
 
 (function () {
   const { sets, updatedAt } = window.RIP_DATA;
+  const setsById = Object.fromEntries(sets.map((s) => [s.id, s]));
+
+  // What opening a product means for the odds engine: packs (and bonus cards) by set.
+  const components = (product) =>
+    product.contents.map((c) => ({ set: setsById[c.set], packs: c.packs, bonus: c.bonus }));
+
+  const unique = (items) => [...new Set(items.filter(Boolean))];
 
   const setSelect = document.getElementById("set-select");
   const productList = document.getElementById("product-list");
@@ -75,7 +82,7 @@
         (p) => `
         <button type="button" class="product${p.id === state.product.id ? " is-active" : ""}"
                 data-id="${p.id}" aria-pressed="${p.id === state.product.id}">
-          <span class="product-name">${p.name}</span>
+          <span class="product-name">${escapeHtml(p.name)}</span>
           <span class="product-meta">${p.packs} pack${p.packs > 1 ? "s" : ""} · ${money.format(p.price)}</span>
         </button>`
       )
@@ -83,16 +90,26 @@
   }
 
   function renderResults() {
-    const a = window.RipOdds.analyze(state.set, state.product, currentPrice());
+    const parts = components(state.product);
+    const a = window.RipOdds.analyze(parts, currentPrice());
     const verdict = a.expectedProfit >= 0 ? "rip" : "skip";
+    const partSets = unique(parts.map((c) => c.set));
+
+    const notes = unique([
+      state.product.kind === "collection" &&
+        `Only the ${a.packs} booster packs are counted. Promo cards and accessories aren't included in the value.`,
+      a.multiSet &&
+        `Contains ${parts.map((c) => `${c.packs} ${c.set.name}`).join(", ")} pack${a.packs > 1 ? "s" : ""}.`,
+      ...partSets.map((s) => s.note),
+    ]);
 
     results.innerHTML = `
       <div class="verdict verdict-${verdict}">
         <span class="verdict-label">${verdict === "rip" ? "Rip it" : "Skip it"}</span>
-        <span class="verdict-detail">${escapeHtml(state.set.name)} · ${state.product.name}</span>
+        <span class="verdict-detail">${escapeHtml(state.set.name)} · ${escapeHtml(state.product.name)}</span>
       </div>
 
-      ${state.set.note ? `<p class="set-note">${escapeHtml(state.set.note)}</p>` : ""}
+      ${notes.map((n) => `<p class="set-note">${escapeHtml(n)}</p>`).join("")}
 
       ${meter(a.valueRatio)}
 
@@ -109,7 +126,7 @@
           <tr>
             <th>Rarity</th>
             <th>Per pack</th>
-            <th>At least one in ${a.packs} pack${a.packs > 1 ? "s" : ""}</th>
+            <th>${a.multiSet ? "At least one in this product" : `At least one in ${a.packs} pack${a.packs > 1 ? "s" : ""}`}</th>
             <th>Expected pulls</th>
             <th>Avg value</th>
           </tr>
@@ -135,12 +152,12 @@
 
       <h3 class="subhead">Top chase cards</h3>
       <ol class="chase">
-        ${window.RipOdds.chaseCards(state.set, state.product)
+        ${window.RipOdds.chaseCards(parts)
           .map(
             (c) => `
           <li>
             <a href="${tcgplayerUrl(c.productId)}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>
-            <span class="chase-meta">${c.rarity} · ${pct(c.chance)} chance in this ${state.product.name}</span>
+            <span class="chase-meta">${a.multiSet ? `${escapeHtml(c.set)} · ` : ""}${c.rarity} · ${pct(c.chance)} chance in this ${escapeHtml(state.product.name)}</span>
             <span class="chase-price">${money.format(c.price)}</span>
           </li>`
           )
@@ -148,17 +165,18 @@
       </ol>
 
       <p class="source">
-        ${state.product.name} price from
+        ${escapeHtml(state.product.name)} price from
         <a href="${tcgplayerUrl(state.product.productId)}" target="_blank" rel="noopener">TCGplayer</a>.
-        ${rateSource(state.set.pullRateSource)}
+        ${partSets.map((s) => rateSource(s, a.multiSet)).join(" ")}
       </p>
     `;
   }
 
-  function rateSource(src) {
+  function rateSource(set, withSetName) {
+    const src = set.pullRateSource;
     if (!src) return "";
     const packs = src.packs ? ` (${src.packs.toLocaleString("en-US")}+ packs opened)` : "";
-    return `Pull rates from the
+    return `${withSetName ? `${escapeHtml(set.name)} pull rates` : "Pull rates"} from the
       <a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>${packs}.`;
   }
 
@@ -205,7 +223,7 @@
       set.products.map((product) => ({
         set,
         product,
-        ...window.RipOdds.analyze(set, product, product.price, 4000),
+        ...window.RipOdds.analyze(components(product), product.price, 4000),
       }))
     );
   }
@@ -223,7 +241,7 @@
             <span class="lb-rank">${i + 1}</span>
             <span class="lb-name">
               <strong>${escapeHtml(r.set.name)}</strong>
-              <span>${r.product.name} · ${r.packs} pack${r.packs > 1 ? "s" : ""}</span>
+              <span>${escapeHtml(r.product.name)} · ${r.product.packs} pack${r.product.packs > 1 ? "s" : ""}</span>
             </span>
             <span class="lb-metric">
               <span class="lb-label">Value</span>
