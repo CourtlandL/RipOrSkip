@@ -133,6 +133,62 @@ select {
   font-size: 0.875rem;
 }
 
+/* Custom price */
+.price-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 14px;
+}
+
+.price-row label {
+  font-weight: 600;
+}
+
+.price-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.price-field:focus-within {
+  border-color: var(--accent);
+}
+
+.price-field span {
+  color: var(--muted);
+}
+
+.price-field input {
+  width: 8ch;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
 /* Results */
 .verdict {
   display: flex;
@@ -159,6 +215,69 @@ select {
 
 .verdict-detail {
   color: var(--muted);
+}
+
+/* Skip-to-Rip meter */
+.meter {
+  margin-top: 10px;
+  padding: 18px 16px 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.meter-track {
+  position: relative;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--neg), var(--accent) 50%, var(--pos));
+}
+
+/* Break-even tick */
+.meter-track::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--text);
+  opacity: 0.35;
+  transform: translateX(-50%);
+}
+
+.meter-marker {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--text);
+  transform: translate(-50%, -50%);
+}
+
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.meter-labels span:first-child {
+  color: var(--neg);
+}
+
+.meter-labels span:last-child {
+  color: var(--pos);
+}
+
+.meter-caption {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  text-align: center;
 }
 
 .stats {

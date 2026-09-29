@@ -28,27 +28,29 @@ window.RipOdds = (function () {
     return value;
   }
 
-  // Monte Carlo estimate of how often opening the product beats its price.
-  function profitChance(set, product, runs = 20000) {
+  // Monte Carlo estimate of how often opening `packs` packs beats `price`.
+  function profitChance(set, packs, price, runs = 20000) {
     let wins = 0;
     for (let i = 0; i < runs; i++) {
       let value = 0;
-      for (let p = 0; p < product.packs; p++) value += simulatePack(set);
-      if (value > product.price) wins++;
+      for (let p = 0; p < packs; p++) value += simulatePack(set);
+      if (value > price) wins++;
     }
     return wins / runs;
   }
 
-  function analyze(set, product) {
+  // `price` defaults to the product's market price; pass one to use your own.
+  function analyze(set, product, price = product.price) {
     const packs = product.packs;
     const ev = expectedValuePerPack(set) * packs;
     const noHitPerPack = set.rarities.reduce((prob, r) => prob * (1 - r.perPack), 1);
     return {
       packs,
-      price: product.price,
+      price,
       expectedValue: ev,
-      expectedProfit: ev - product.price,
-      profitChance: profitChance(set, product),
+      expectedProfit: ev - price,
+      valueRatio: price > 0 ? ev / price : Infinity,
+      profitChance: profitChance(set, packs, price),
       anyHitChance: 1 - Math.pow(noHitPerPack, packs),
       rarities: set.rarities.map((r) => ({
         name: r.name,

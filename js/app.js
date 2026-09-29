@@ -7,6 +7,8 @@
   const productList = document.getElementById("product-list");
   const results = document.getElementById("results");
   const updated = document.getElementById("updated");
+  const priceInput = document.getElementById("price-input");
+  const priceReset = document.getElementById("price-reset");
 
   const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
   const pct = (x) =>
@@ -16,17 +18,34 @@
   const escapeHtml = (s) =>
     s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
+  // customPrice is null when using the market price.
   let state = readHash();
 
   function readHash() {
     const params = new URLSearchParams(location.hash.slice(1));
     const set = sets.find((s) => s.id === params.get("set")) || sets[0];
     const product = set.products.find((p) => p.id === params.get("product")) || set.products[0];
-    return { set, product };
+    const price = parseFloat(params.get("price"));
+    return { set, product, customPrice: price >= 0 ? price : null };
   }
 
   function writeHash() {
-    history.replaceState(null, "", `#set=${state.set.id}&product=${state.product.id}`);
+    let hash = `#set=${state.set.id}&product=${state.product.id}`;
+    if (state.customPrice !== null) hash += `&price=${state.customPrice}`;
+    history.replaceState(null, "", hash);
+  }
+
+  function currentPrice() {
+    return state.customPrice ?? state.product.price;
+  }
+
+  function renderPriceInput() {
+    // Don't overwrite what the user is typing.
+    if (document.activeElement !== priceInput) {
+      priceInput.value = currentPrice().toFixed(2);
+    }
+    priceReset.hidden = state.customPrice === null;
+    priceReset.textContent = `Use market price (${money.format(state.product.price)})`;
   }
 
   function renderSetOptions() {
@@ -50,7 +69,7 @@
   }
 
   function renderResults() {
-    const a = window.RipOdds.analyze(state.set, state.product);
+    const a = window.RipOdds.analyze(state.set, state.product, currentPrice());
     const verdict = a.expectedProfit >= 0 ? "rip" : "skip";
 
     results.innerHTML = `
@@ -59,8 +78,10 @@
         <span class="verdict-detail">${state.set.name} · ${state.product.name}</span>
       </div>
 
+      ${meter(a.valueRatio)}
+
       <div class="stats">
-        ${stat("Price", money.format(a.price))}
+        ${stat(state.customPrice === null ? "Market price" : "Your price", money.format(a.price))}
         ${stat("Expected value", money.format(a.expectedValue))}
         ${stat("Expected profit", signedMoney(a.expectedProfit), a.expectedProfit >= 0 ? "pos" : "neg")}
         ${stat("Chance of profit", pct(a.profitChance))}
@@ -121,16 +142,41 @@
     return `<div class="stat ${tone}"><span class="stat-label">${label}</span><span class="stat-value">${value}</span></div>`;
   }
 
+  // Skip-to-Rip bar. Placement is log-scaled on expected value ÷ price:
+  // half your money back or worse sits at the Skip end, break-even in the middle,
+  // double your money or better at the Rip end.
+  function meter(ratio) {
+    const position = Math.min(1, Math.max(0, 0.5 + Math.log2(ratio) / 2));
+    const caption =
+      ratio === Infinity
+        ? "It's free — rip it"
+        : `Expected value is ${Math.round(ratio * 100)}% of the price`;
+    return `
+      <div class="meter" role="meter" aria-valuemin="0" aria-valuemax="100"
+           aria-valuenow="${Math.round(position * 100)}" aria-label="Skip it to rip it">
+        <div class="meter-track">
+          <span class="meter-marker" style="left:${(position * 100).toFixed(1)}%"></span>
+        </div>
+        <div class="meter-labels">
+          <span>Skip it</span>
+          <span>Break even</span>
+          <span>Rip it</span>
+        </div>
+        <p class="meter-caption">${caption}</p>
+      </div>`;
+  }
+
   function update() {
     writeHash();
     renderProducts();
+    renderPriceInput();
     renderResults();
   }
 
   setSelect.addEventListener("change", () => {
     const set = sets.find((s) => s.id === setSelect.value);
     const product = set.products.find((p) => p.id === state.product.id) || set.products[0];
-    state = { set, product };
+    state = { set, product, customPrice: null };
     update();
   });
 
@@ -138,6 +184,25 @@
     const button = e.target.closest(".product");
     if (!button) return;
     state.product = state.set.products.find((p) => p.id === button.dataset.id);
+    state.customPrice = null;
+    update();
+  });
+
+  let priceTimer;
+  priceInput.addEventListener("input", () => {
+    const price = parseFloat(priceInput.value);
+    if (!(price >= 0)) return;
+    clearTimeout(priceTimer);
+    priceTimer = setTimeout(() => {
+      state.customPrice = Math.abs(price - state.product.price) < 0.005 ? null : price;
+      update();
+    }, 250);
+  });
+
+  priceInput.addEventListener("blur", renderPriceInput);
+
+  priceReset.addEventListener("click", () => {
+    state.customPrice = null;
     update();
   });
 
