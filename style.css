@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #111;
+  color: #f5f5f5;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  letter-spacing: -0.03em;
+}
+
+h1 span {
+  color: #888;
+}
+
+p {
+  margin-top: 0.75rem;
+  color: #aaa;
+  font-size: 1.125rem;
+}
