@@ -44,7 +44,10 @@ window.RipOdds = (function () {
   function analyze(set, product, price = product.price, runs = 20000) {
     const packs = product.packs;
     const ev = expectedValuePerPack(set) * packs;
-    const noHitPerPack = set.rarities.reduce((prob, r) => prob * (1 - r.perPack), 1);
+    // Guaranteed slots (e.g. 30th Celebration's Pikachu Rare) don't count as a "hit".
+    const noHitPerPack = set.rarities
+      .filter((r) => r.perPack < 1)
+      .reduce((prob, r) => prob * (1 - r.perPack), 1);
     return {
       packs,
       price,

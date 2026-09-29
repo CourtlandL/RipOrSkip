@@ -36,8 +36,14 @@ $sets = @()
 
 foreach ($set in $config.sets) {
   Write-Host "Updating $($set.name)..."
-  $products = Get-Json "$base/$($set.groupId)/products"
-  $prices = Get-Json "$base/$($set.groupId)/prices"
+  # Some sets keep part of their pack contents in a separate TCGplayer group
+  # (e.g. 30th Celebration's Classic Collection), listed in extraGroupIds.
+  $products = @()
+  $prices = @()
+  foreach ($groupId in @($set.groupId) + @($set.extraGroupIds | Where-Object { $_ })) {
+    $products += Get-Json "$base/$groupId/products"
+    $prices += Get-Json "$base/$groupId/prices"
+  }
 
   # Market price per product. Cards prefer the Holofoil printing; sealed items only have Normal.
   $priceById = @{}
@@ -51,9 +57,21 @@ foreach ($set in $config.sets) {
 
   $rarities = @()
   foreach ($rate in $set.pullRates.PSObject.Properties) {
+    # A rate is either a percent (cards matched by rarity) or {percent, match}
+    # (cards matched by product name, for pattern foils that share a base rarity).
+    if ($rate.Value -is [PSCustomObject]) {
+      $percent = [double]$rate.Value.percent
+      $match = $rate.Value.match
+      $inTier = { $_.name -like "*$match*" }
+    } else {
+      $percent = [double]$rate.Value
+      $inTier = { (Get-Rarity $_) -eq $rate.Name -and $_.name -notlike '*Ball Pattern*' }
+    }
+
     $cards = @(
       $products |
-        Where-Object { (Get-Rarity $_) -eq $rate.Name -and $priceById.ContainsKey($_.productId) } |
+        Where-Object $inTier |
+        Where-Object { $priceById.ContainsKey($_.productId) } |
         ForEach-Object { [ordered]@{ name = $_.name; productId = $_.productId; price = $priceById[$_.productId] } } |
         Sort-Object { $_.price } -Descending
     )
@@ -62,7 +80,7 @@ foreach ($set in $config.sets) {
     $avg = ($cards | ForEach-Object { $_.price } | Measure-Object -Average).Average
     $rarities += [ordered]@{
       name = $rate.Name
-      perPack = 1 / [double]$rate.Value
+      perPack = $percent / 100
       avgValue = [math]::Round($avg, 2)
       cards = $cards
     }
@@ -89,6 +107,7 @@ foreach ($set in $config.sets) {
     series = $set.series
     year = $set.year
     note = $set.note
+    pullRateSource = $set.pullRateSource
     bulkValuePerPack = $set.bulkValuePerPack
     rarities = $rarities
     products = $sealed

@@ -120,7 +120,7 @@
               (r) => `
             <tr>
               <td>${r.name}</td>
-              <td>1 in ${Math.round(r.oneIn)}</td>
+              <td>${r.oneIn <= 1 ? "Every pack" : `1 in ${Math.round(r.oneIn).toLocaleString("en-US")}`}</td>
               <td>
                 <div class="bar"><span style="width:${(r.chance * 100).toFixed(1)}%"></span></div>
                 ${pct(r.chance)}
@@ -150,8 +150,16 @@
       <p class="source">
         ${state.product.name} price from
         <a href="${tcgplayerUrl(state.product.productId)}" target="_blank" rel="noopener">TCGplayer</a>.
+        ${rateSource(state.set.pullRateSource)}
       </p>
     `;
+  }
+
+  function rateSource(src) {
+    if (!src) return "";
+    const packs = src.packs ? ` (${src.packs.toLocaleString("en-US")}+ packs opened)` : "";
+    return `Pull rates from the
+      <a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>${packs}.`;
   }
 
   function stat(label, value, tone = "") {

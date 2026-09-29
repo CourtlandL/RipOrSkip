@@ -1,6 +1,57 @@
 {
-    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are \u0027one in N packs\u0027 ESTIMATES and still need verifying. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set.",
+    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are the percent of packs containing each rarity, from the study in pullRateSource. A rate given as {percent, match} counts cards whose product name contains \u0027match\u0027 (e.g. Master Ball Pattern) instead of matching on rarity. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set.",
     "sets":  [
+                 {
+                     "id":  "30th-celebration",
+                     "name":  "30th Celebration",
+                     "series":  "Mega Evolution",
+                     "year":  2026,
+                     "groupId":  24722,
+                     "extraGroupIds":  [
+                                           24837
+                                       ],
+                     "bulkValuePerPack":  0.3,
+                     "note":  "Every pack has a guaranteed Pikachu Rare. RGB Rares aren\u0027t counted yet: their pull rate hasn\u0027t been measured.",
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  3000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-30th-Celebration-Pull-Rates/587b3657-481a-4ab8-827c-68cd3ab585b0/"
+                                        },
+                     "pullRates":  {
+                                       "Pikachu Rare":  100,
+                                       "Double Rare":  21.02,
+                                       "Illustration Rare":  19.72,
+                                       "Classic Collection":  10.15,
+                                       "Special Illustration Rare":  4.88,
+                                       "Futuristic Rare":  0.83
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  696613
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  704171
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  704143
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  704144
+                                      }
+                                  ]
+                 },
                  {
                      "id":  "pitch-black",
                      "name":  "Pitch Black",
@@ -8,12 +59,17 @@
                      "year":  2026,
                      "groupId":  24688,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  4000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Pitch-Black-Pull-Rates/069a5fda-2d1f-44a1-97de-b6dcdc5abfb8/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  11,
-                                       "Special Illustration Rare":  100,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  21.02,
+                                       "Ultra Rare":  8.3,
+                                       "Illustration Rare":  11.01,
+                                       "Special Illustration Rare":  1.25,
+                                       "Mega Hyper Rare":  0.09
                                    },
                      "products":  [
                                       {
@@ -55,12 +111,17 @@
                      "year":  2026,
                      "groupId":  24655,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8500,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Chaos-Rising-Pull-Rates/304e8bfc-175a-4d31-93fe-5bb1be11e5d2/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  11,
-                                       "Special Illustration Rare":  100,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  20.3,
+                                       "Ultra Rare":  8.29,
+                                       "Illustration Rare":  10.66,
+                                       "Special Illustration Rare":  1.21,
+                                       "Mega Hyper Rare":  0.1
                                    },
                      "products":  [
                                       {
@@ -102,12 +163,17 @@
                      "year":  2026,
                      "groupId":  24587,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  3500,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Perfect-Order-Pull-Rates/73148119-ebcb-40b7-84b6-52b3a6d0c631/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  11,
-                                       "Special Illustration Rare":  100,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  20.97,
+                                       "Ultra Rare":  8.54,
+                                       "Illustration Rare":  11.2,
+                                       "Special Illustration Rare":  1.23,
+                                       "Mega Hyper Rare":  0.06
                                    },
                      "products":  [
                                       {
@@ -149,13 +215,18 @@
                      "year":  2026,
                      "groupId":  24541,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  2000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Ascended-Heroes-Pull-Rates/60143d94-88a7-42ce-8e73-babd7b3fabd6/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  4,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  10,
-                                       "Mega Attack Rare":  30,
-                                       "Special Illustration Rare":  80,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  20.37,
+                                       "Ultra Rare":  4.81,
+                                       "Illustration Rare":  11.25,
+                                       "Mega Attack Rare":  3.47,
+                                       "Special Illustration Rare":  1.44,
+                                       "Mega Hyper Rare":  0.19
                                    },
                      "products":  [
                                       {
@@ -191,12 +262,17 @@
                      "year":  2025,
                      "groupId":  24448,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  5000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Phantasmal-Flames-Pull-Rates/9abae60d-b7fb-448f-874e-176f78d6a6ca/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  11,
-                                       "Special Illustration Rare":  100,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  20.77,
+                                       "Ultra Rare":  8.06,
+                                       "Illustration Rare":  10.97,
+                                       "Special Illustration Rare":  1.25,
+                                       "Mega Hyper Rare":  0.08
                                    },
                      "products":  [
                                       {
@@ -238,12 +314,17 @@
                      "year":  2025,
                      "groupId":  24380,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  5000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Mega-Evolution-Pull-Rates/40cbeedc-21ce-473b-aef1-74e3969d9f91/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  11,
-                                       "Special Illustration Rare":  100,
-                                       "Mega Hyper Rare":  1000
+                                       "Double Rare":  20.91,
+                                       "Ultra Rare":  8.23,
+                                       "Illustration Rare":  10.89,
+                                       "Special Illustration Rare":  0.99,
+                                       "Mega Hyper Rare":  0.08
                                    },
                      "products":  [
                                       {
@@ -285,12 +366,25 @@
                      "year":  2025,
                      "groupId":  24325,
                      "bulkValuePerPack":  0.3,
+                     "note":  "Black White Rares aren\u0027t counted: none turned up in 700+ packs, so their rate is unknown.",
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  700,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Black-Bolt-and-White-Flare-Pull-Rates/bac92199-a2a7-4668-b4a4-2647a111776f/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  6,
-                                       "Special Illustration Rare":  70,
-                                       "Black White Rare":  1000
+                                       "Poké Ball Pattern":  {
+                                                                 "percent":  30.56,
+                                                                 "match":  "Poke Ball Pattern"
+                                                             },
+                                       "Double Rare":  21.11,
+                                       "Illustration Rare":  16.39,
+                                       "Ultra Rare":  5.83,
+                                       "Master Ball Pattern":  {
+                                                                   "percent":  5.14,
+                                                                   "match":  "Master Ball Pattern"
+                                                               },
+                                       "Special Illustration Rare":  1.25
                                    },
                      "products":  [
                                       {
@@ -326,12 +420,25 @@
                      "year":  2025,
                      "groupId":  24326,
                      "bulkValuePerPack":  0.3,
+                     "note":  "Black White Rares aren\u0027t counted: none turned up in 700+ packs, so their rate is unknown.",
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  700,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Black-Bolt-and-White-Flare-Pull-Rates/bac92199-a2a7-4668-b4a4-2647a111776f/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  6,
-                                       "Special Illustration Rare":  70,
-                                       "Black White Rare":  1000
+                                       "Poké Ball Pattern":  {
+                                                                 "percent":  30.56,
+                                                                 "match":  "Poke Ball Pattern"
+                                                             },
+                                       "Double Rare":  21.11,
+                                       "Illustration Rare":  16.39,
+                                       "Ultra Rare":  5.83,
+                                       "Master Ball Pattern":  {
+                                                                   "percent":  5.14,
+                                                                   "match":  "Master Ball Pattern"
+                                                               },
+                                       "Special Illustration Rare":  1.25
                                    },
                      "products":  [
                                       {
@@ -367,12 +474,17 @@
                      "year":  2025,
                      "groupId":  24269,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Destined-Rivals-Pull-Rates/43ba832e-44c9-45a4-ae2e-594df2defdda/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  12,
-                                       "Special Illustration Rare":  94,
-                                       "Hyper Rare":  149
+                                       "Double Rare":  19.83,
+                                       "Ultra Rare":  6.39,
+                                       "Illustration Rare":  8.29,
+                                       "Special Illustration Rare":  1.06,
+                                       "Hyper Rare":  0.67
                                    },
                      "products":  [
                                       {
@@ -414,12 +526,17 @@
                      "year":  2025,
                      "groupId":  24073,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Journey-Together-Pull-Rates/1b9f379f-97cb-45cc-b6f6-a1a070a422cd/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  12,
-                                       "Special Illustration Rare":  86,
-                                       "Hyper Rare":  137
+                                       "Double Rare":  20.29,
+                                       "Ultra Rare":  6.54,
+                                       "Illustration Rare":  8.5,
+                                       "Special Illustration Rare":  1.16,
+                                       "Hyper Rare":  0.73
                                    },
                      "products":  [
                                       {
@@ -461,13 +578,24 @@
                      "year":  2025,
                      "groupId":  23821,
                      "bulkValuePerPack":  0.3,
-                     "note":  "Poké Ball and Master Ball pattern cards aren\u0027t included in the odds yet.",
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Prismatic-Evolutions-Pull-Rates/d94889ea-f76a-4a13-b74d-5b0b071220a7/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  13,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  45,
-                                       "Hyper Rare":  180
+                                       "Poké Ball Pattern":  {
+                                                                 "percent":  33.1,
+                                                                 "match":  "Poke Ball Pattern"
+                                                             },
+                                       "Double Rare":  16.51,
+                                       "Ultra Rare":  7.46,
+                                       "Master Ball Pattern":  {
+                                                                   "percent":  4.92,
+                                                                   "match":  "Master Ball Pattern"
+                                                               },
+                                       "ACE SPEC Rare":  4.68,
+                                       "Special Illustration Rare":  2.22,
+                                       "Hyper Rare":  0.56
                                    },
                      "products":  [
                                       {
@@ -503,13 +631,18 @@
                      "year":  2024,
                      "groupId":  23651,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Surging-Sparks-Pull-Rates/6ccfb6ab-f26a-4ce8-bab5-5f91c85ec70e/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  11,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  86,
-                                       "Hyper Rare":  144
+                                       "Double Rare":  16.94,
+                                       "Illustration Rare":  7.67,
+                                       "Ultra Rare":  6.74,
+                                       "ACE SPEC Rare":  5.03,
+                                       "Special Illustration Rare":  1.15,
+                                       "Hyper Rare":  0.53
                                    },
                      "products":  [
                                       {
@@ -551,13 +684,18 @@
                      "year":  2024,
                      "groupId":  23537,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Stellar-Crown-Pull-Rates/2c0743dd-dbd0-4504-9ff8-be5a72dd04d1/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  5,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  12,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  90,
-                                       "Hyper Rare":  144
+                                       "Double Rare":  16.9,
+                                       "Illustration Rare":  7.79,
+                                       "Ultra Rare":  6.75,
+                                       "ACE SPEC Rare":  4.94,
+                                       "Special Illustration Rare":  1.11,
+                                       "Hyper Rare":  0.73
                                    },
                      "products":  [
                                       {
@@ -599,13 +737,19 @@
                      "year":  2024,
                      "groupId":  23529,
                      "bulkValuePerPack":  0.3,
+                     "note":  "TCGplayer hasn\u0027t published rates for this set, so these come from a smaller community study. The Double Rare rate is assumed to match other 2024 sets.",
+                     "pullRateSource":  {
+                                            "name":  "Dripshop community openings",
+                                            "packs":  1500,
+                                            "url":  "https://pokepatch.com/2025/05/24/shrouded-fable-pull-rates-in-pokemon-tcg-set/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  6,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  12,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  64,
-                                       "Hyper Rare":  138
+                                       "Double Rare":  16.9,
+                                       "Illustration Rare":  8.5,
+                                       "Ultra Rare":  6.5,
+                                       "ACE SPEC Rare":  5,
+                                       "Special Illustration Rare":  1.5,
+                                       "Hyper Rare":  0.7
                                    },
                      "products":  [
                                       {
@@ -641,13 +785,18 @@
                      "year":  2024,
                      "groupId":  23473,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Twilight-Masquerade-Pull-Rates/f3eea967-e5fb-4108-8655-bb1c89587628/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  6,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  86,
-                                       "Hyper Rare":  146
+                                       "Double Rare":  16.93,
+                                       "Illustration Rare":  7.73,
+                                       "Ultra Rare":  6.61,
+                                       "ACE SPEC Rare":  5.06,
+                                       "Special Illustration Rare":  1.17,
+                                       "Hyper Rare":  0.68
                                    },
                      "products":  [
                                       {
@@ -689,13 +838,18 @@
                      "year":  2024,
                      "groupId":  23381,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Temporal-Forces-Pull-Rates/28c0ad22-00a4-428f-b22d-e7fee9ec50bc/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  6,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "ACE SPEC Rare":  20,
-                                       "Special Illustration Rare":  86,
-                                       "Hyper Rare":  139
+                                       "Double Rare":  16.83,
+                                       "Illustration Rare":  7.72,
+                                       "Ultra Rare":  6.67,
+                                       "ACE SPEC Rare":  5,
+                                       "Special Illustration Rare":  1.17,
+                                       "Hyper Rare":  0.72
                                    },
                      "products":  [
                                       {
@@ -737,14 +891,19 @@
                      "year":  2024,
                      "groupId":  23353,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  1500,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Paldean-Fates-Pull-Rates/23de3e93-0d0f-4ae0-abc4-13664f3001a3/"
+                                        },
                      "pullRates":  {
-                                       "Shiny Rare":  4,
-                                       "Double Rare":  6,
-                                       "Shiny Ultra Rare":  13,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  26,
-                                       "Special Illustration Rare":  62,
-                                       "Hyper Rare":  64
+                                       "Shiny Rare":  25.44,
+                                       "Double Rare":  15.89,
+                                       "Shiny Ultra Rare":  7.72,
+                                       "Illustration Rare":  7.22,
+                                       "Ultra Rare":  6.61,
+                                       "Special Illustration Rare":  1.72,
+                                       "Hyper Rare":  1.61
                                    },
                      "products":  [
                                       {
@@ -780,12 +939,17 @@
                      "year":  2023,
                      "groupId":  23286,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Paradox-Rift-Pull-Rates/0b5fb648-38fc-4f61-a6af-57c2737b4a48/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  6,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "Special Illustration Rare":  47,
-                                       "Hyper Rare":  82
+                                       "Double Rare":  15.57,
+                                       "Illustration Rare":  7.7,
+                                       "Ultra Rare":  6.64,
+                                       "Special Illustration Rare":  2.11,
+                                       "Hyper Rare":  1.22
                                    },
                      "products":  [
                                       {
@@ -827,12 +991,17 @@
                      "year":  2023,
                      "groupId":  23237,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  1500,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Scarlet-Violet%E2%80%94151-Pull-Rates/b237df74-fbb0-40d0-9e13-d69ee6e804d9/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  8,
-                                       "Ultra Rare":  16,
-                                       "Illustration Rare":  12,
-                                       "Special Illustration Rare":  32,
-                                       "Hyper Rare":  51
+                                       "Double Rare":  13.28,
+                                       "Illustration Rare":  8.5,
+                                       "Ultra Rare":  6.44,
+                                       "Special Illustration Rare":  3.11,
+                                       "Hyper Rare":  1.94
                                    },
                      "products":  [
                                       {
@@ -868,12 +1037,17 @@
                      "year":  2023,
                      "groupId":  23228,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Obsidian-Flames-Pull-Rates/e2a66999-a7b5-4621-9765-c9a132e04bd2/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  7,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "Special Illustration Rare":  32,
-                                       "Hyper Rare":  54
+                                       "Double Rare":  13.61,
+                                       "Illustration Rare":  7.6,
+                                       "Ultra Rare":  6.63,
+                                       "Special Illustration Rare":  3.13,
+                                       "Hyper Rare":  1.92
                                    },
                      "products":  [
                                       {
@@ -915,12 +1089,17 @@
                      "year":  2023,
                      "groupId":  23120,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Paldea-Evolved-Pull-Rates/1b7d3e70-9542-4a50-8692-1661e2316521/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  7,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "Special Illustration Rare":  32,
-                                       "Hyper Rare":  58
+                                       "Double Rare":  13.72,
+                                       "Illustration Rare":  7.7,
+                                       "Ultra Rare":  6.64,
+                                       "Special Illustration Rare":  3.17,
+                                       "Hyper Rare":  1.76
                                    },
                      "products":  [
                                       {
@@ -962,12 +1141,17 @@
                      "year":  2023,
                      "groupId":  22873,
                      "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Scarlet-Violet-Pull-Rates/a7702fce-dd64-4a58-beb1-0f871c853215/"
+                                        },
                      "pullRates":  {
-                                       "Double Rare":  7,
-                                       "Ultra Rare":  15,
-                                       "Illustration Rare":  13,
-                                       "Special Illustration Rare":  32,
-                                       "Hyper Rare":  53
+                                       "Double Rare":  13.76,
+                                       "Illustration Rare":  7.67,
+                                       "Ultra Rare":  6.57,
+                                       "Special Illustration Rare":  3.15,
+                                       "Hyper Rare":  1.85
                                    },
                      "products":  [
                                       {

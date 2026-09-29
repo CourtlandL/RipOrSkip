@@ -15,7 +15,8 @@ Hosted on GitHub Pages, deployed by the `Update prices and deploy` GitHub Action
 Prices are TCGplayer market prices from [TCGCSV](https://tcgcsv.com), which republishes TCGplayer's catalog daily.
 
 - `data/sets.json` — **hand-maintained**: which sets to show, their TCGplayer group IDs, pull rates
-  (as "one in N packs"), and the sealed products with pack counts and TCGplayer product IDs
+  (percent of packs containing each rarity) with their source, and the sealed products with pack
+  counts and TCGplayer product IDs
 - `scripts/update-prices.ps1` — reads `data/sets.json`, fetches card and sealed prices, writes `js/data.js`
 - `js/data.js` — **generated**, don't edit by hand
 
@@ -23,7 +24,9 @@ To add a set: find its group ID at https://tcgcsv.com/tcgplayer/3/groups, list i
 `./scripts/update-prices.ps1 -ListSealed <groupId>`, add an entry to `data/sets.json`, then run
 `./scripts/update-prices.ps1`.
 
-Pull rates are estimates and still need verifying.
+Pull rates come from the TCGplayer Authentication Center's published pack-opening studies
+(one article per set, linked in `pullRateSource`), except Shrouded Fable, which uses a community study.
+Rarities with no measured rate (Black White Rare, RGB Rare) are left out and noted on the site.
 
 ## Structure
 
