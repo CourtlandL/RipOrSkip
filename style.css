@@ -1,30 +1,274 @@
+:root {
+  --bg: #111214;
+  --surface: #1b1c20;
+  --surface-2: #25262b;
+  --border: #2f3036;
+  --text: #f3f3f5;
+  --muted: #9a9ba3;
+  --accent: #ffcb05;
+  --pos: #3ecf8e;
+  --neg: #ff5c5c;
+  --radius: 12px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
 body {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 16px;
-  background: #111;
-  color: #f5f5f5;
+  background: var(--bg);
+  color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-  text-align: center;
+  line-height: 1.5;
 }
 
-h1 {
-  font-size: clamp(2.5rem, 10vw, 5rem);
+main,
+.site-header,
+.site-footer {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Header */
+.site-header {
+  padding-top: 48px;
+  padding-bottom: 24px;
+}
+
+.logo {
+  font-size: clamp(2.25rem, 8vw, 3.5rem);
   letter-spacing: -0.03em;
+  line-height: 1;
 }
 
-h1 span {
-  color: #888;
+.logo span {
+  color: var(--accent);
 }
 
-p {
-  margin-top: 0.75rem;
-  color: #aaa;
+.tagline {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.notice {
+  padding: 10px 14px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Steps */
+.step {
+  margin-top: 32px;
+}
+
+.step h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
   font-size: 1.125rem;
+}
+
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #111;
+  font-size: 0.875rem;
+}
+
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+/* Products */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.product:hover {
+  border-color: var(--muted);
+}
+
+.product.is-active {
+  border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.product-name {
+  font-weight: 600;
+}
+
+.product-meta {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Results */
+.verdict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.verdict-label {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.verdict-rip .verdict-label {
+  color: var(--pos);
+}
+
+.verdict-skip .verdict-label {
+  color: var(--neg);
+}
+
+.verdict-detail {
+  color: var(--muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.stat-value {
+  font-size: 1.375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat.pos .stat-value {
+  color: var(--pos);
+}
+
+.stat.neg .stat-value {
+  color: var(--neg);
+}
+
+/* Odds table */
+.odds {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.odds th,
+.odds td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.odds th {
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.bar {
+  height: 6px;
+  margin-bottom: 4px;
+  border-radius: 3px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+/* Stack table rows into cards on small screens */
+@media (max-width: 640px) {
+  .odds thead {
+    display: none;
+  }
+
+  .odds tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .odds td {
+    padding: 0;
+    border: 0;
+  }
+
+  .odds td:first-child {
+    grid-column: 1 / -1;
+    font-weight: 600;
+  }
+
+  .odds td:nth-child(n + 2)::before {
+    display: block;
+    color: var(--muted);
+    font-size: 0.75rem;
+  }
+
+  .odds td:nth-child(2)::before { content: "Per pack"; }
+  .odds td:nth-child(3)::before { content: "At least one"; }
+  .odds td:nth-child(4)::before { content: "Expected pulls"; }
+  .odds td:nth-child(5)::before { content: "Avg value"; }
+}
+
+.site-footer {
+  margin-top: 64px;
+  padding-bottom: 32px;
+  color: var(--muted);
+  font-size: 0.8125rem;
 }

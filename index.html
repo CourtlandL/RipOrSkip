@@ -3,13 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RipOrSkip</title>
+  <title>RipOrSkip — Pokémon pack odds</title>
+  <meta name="description" content="Look up any Pokémon set and product to see your odds of pulling hits and turning a profit.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="site-header">
+    <h1 class="logo">Rip<span>Or</span>Skip</h1>
+    <p class="tagline">Pick a Pokémon set and product. See your odds before you rip.</p>
+  </header>
+
   <main>
-    <h1>Rip<span>Or</span>Skip</h1>
-    <p>Coming soon.</p>
+    <p class="notice">Sample data — the numbers below are placeholders, not real pull rates or prices.</p>
+
+    <section class="step">
+      <h2><span class="step-num">1</span> Pick a set</h2>
+      <select id="set-select" aria-label="Set"></select>
+    </section>
+
+    <section class="step">
+      <h2><span class="step-num">2</span> Pick a product</h2>
+      <div id="product-list" class="products"></div>
+    </section>
+
+    <section class="step">
+      <h2><span class="step-num">3</span> Your odds</h2>
+      <div id="results"></div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    RipOrSkip is not affiliated with Nintendo, The Pokémon Company or Game Freak.
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/odds.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
