@@ -217,6 +217,16 @@ select {
   color: var(--muted);
 }
 
+.set-note {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
 /* Skip-to-Rip meter */
 .meter {
   margin-top: 10px;

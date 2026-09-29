@@ -1,91 +1,1006 @@
 {
-  "_comment": "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are 'one in N packs' ESTIMATES and still need verifying. bulkValuePerPack is an estimate of the non-hit cards in a pack.",
-  "sets": [
-    {
-      "id": "destined-rivals",
-      "name": "Destined Rivals",
-      "year": 2025,
-      "groupId": 24269,
-      "bulkValuePerPack": 0.3,
-      "pullRates": {
-        "Double Rare": 5,
-        "Ultra Rare": 16,
-        "Illustration Rare": 12,
-        "Special Illustration Rare": 94,
-        "Hyper Rare": 149
-      },
-      "products": [
-        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 624683 },
-        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 625670 },
-        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 624676 },
-        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 624675 },
-        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 624679 }
-      ]
-    },
-    {
-      "id": "journey-together",
-      "name": "Journey Together",
-      "year": 2025,
-      "groupId": 24073,
-      "bulkValuePerPack": 0.3,
-      "pullRates": {
-        "Double Rare": 5,
-        "Ultra Rare": 15,
-        "Illustration Rare": 12,
-        "Special Illustration Rare": 86,
-        "Hyper Rare": 137
-      },
-      "products": [
-        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 610935 },
-        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 610953 },
-        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 610930 },
-        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 610929 },
-        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 610931 }
-      ]
-    },
-    {
-      "id": "surging-sparks",
-      "name": "Surging Sparks",
-      "year": 2024,
-      "groupId": 23651,
-      "bulkValuePerPack": 0.3,
-      "pullRates": {
-        "Double Rare": 5,
-        "Ultra Rare": 15,
-        "Illustration Rare": 11,
-        "ACE SPEC Rare": 20,
-        "Special Illustration Rare": 86,
-        "Hyper Rare": 144
-      },
-      "products": [
-        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 565604 },
-        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 565629 },
-        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 565630 },
-        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 565632 },
-        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 565606 }
-      ]
-    },
-    {
-      "id": "stellar-crown",
-      "name": "Stellar Crown",
-      "year": 2024,
-      "groupId": 23537,
-      "bulkValuePerPack": 0.3,
-      "pullRates": {
-        "Double Rare": 5,
-        "Ultra Rare": 15,
-        "Illustration Rare": 12,
-        "ACE SPEC Rare": 20,
-        "Special Illustration Rare": 90,
-        "Hyper Rare": 144
-      },
-      "products": [
-        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 557331 },
-        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 557345 },
-        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 557350 },
-        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 557340 },
-        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 557354 }
-      ]
-    }
-  ]
+    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are \u0027one in N packs\u0027 ESTIMATES and still need verifying. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set.",
+    "sets":  [
+                 {
+                     "id":  "pitch-black",
+                     "name":  "Pitch Black",
+                     "series":  "Mega Evolution",
+                     "year":  2026,
+                     "groupId":  24688,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  11,
+                                       "Special Illustration Rare":  100,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  692944
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  692942
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  692947
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  692949
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  692939
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "chaos-rising",
+                     "name":  "Chaos Rising",
+                     "series":  "Mega Evolution",
+                     "year":  2026,
+                     "groupId":  24655,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  11,
+                                       "Special Illustration Rare":  100,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  684446
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  684456
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  684450
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  684452
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  684444
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "perfect-order",
+                     "name":  "Perfect Order",
+                     "series":  "Mega Evolution",
+                     "year":  2026,
+                     "groupId":  24587,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  11,
+                                       "Special Illustration Rare":  100,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  672398
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  672396
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  672401
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  672404
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  672394
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "ascended-heroes",
+                     "name":  "Ascended Heroes",
+                     "series":  "Mega Evolution",
+                     "year":  2026,
+                     "groupId":  24541,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  4,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  10,
+                                       "Mega Attack Rare":  30,
+                                       "Special Illustration Rare":  80,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  672434
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  668541
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  668496
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  668497
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "phantasmal-flames",
+                     "name":  "Phantasmal Flames",
+                     "series":  "Mega Evolution",
+                     "year":  2025,
+                     "groupId":  24448,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  11,
+                                       "Special Illustration Rare":  100,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  654144
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  654160
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  654136
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  654135
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  654137
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "mega-evolution",
+                     "name":  "Mega Evolution",
+                     "series":  "Mega Evolution",
+                     "year":  2025,
+                     "groupId":  24380,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  11,
+                                       "Special Illustration Rare":  100,
+                                       "Mega Hyper Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  644352
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  644362
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  644279
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  648415
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  644298
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "black-bolt",
+                     "name":  "Black Bolt",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2025,
+                     "groupId":  24325,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  6,
+                                       "Special Illustration Rare":  70,
+                                       "Black White Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  630434
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  630431
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  630686
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  630687
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "white-flare",
+                     "name":  "White Flare",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2025,
+                     "groupId":  24326,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  6,
+                                       "Special Illustration Rare":  70,
+                                       "Black White Rare":  1000
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  630699
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  630696
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  630689
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  630688
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "destined-rivals",
+                     "name":  "Destined Rivals",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2025,
+                     "groupId":  24269,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  12,
+                                       "Special Illustration Rare":  94,
+                                       "Hyper Rare":  149
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  624683
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  625670
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  624676
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  624675
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  624679
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "journey-together",
+                     "name":  "Journey Together",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2025,
+                     "groupId":  24073,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  12,
+                                       "Special Illustration Rare":  86,
+                                       "Hyper Rare":  137
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  610935
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  610953
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  610930
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  610929
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  610931
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "prismatic-evolutions",
+                     "name":  "Prismatic Evolutions",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2025,
+                     "groupId":  23821,
+                     "bulkValuePerPack":  0.3,
+                     "note":  "Poké Ball and Master Ball pattern cards aren\u0027t included in the odds yet.",
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  13,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  45,
+                                       "Hyper Rare":  180
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  593294
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  600518
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  593355
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  593324
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "surging-sparks",
+                     "name":  "Surging Sparks",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23651,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  11,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  86,
+                                       "Hyper Rare":  144
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  565604
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  565629
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  565630
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  565632
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  565606
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "stellar-crown",
+                     "name":  "Stellar Crown",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23537,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  5,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  12,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  90,
+                                       "Hyper Rare":  144
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  557331
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  557345
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  557350
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  557340
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  557354
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "shrouded-fable",
+                     "name":  "Shrouded Fable",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23529,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  6,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  12,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  64,
+                                       "Hyper Rare":  138
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  552997
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  553031
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  552999
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  552998
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "twilight-masquerade",
+                     "name":  "Twilight Masquerade",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23473,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  6,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  86,
+                                       "Hyper Rare":  146
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  543843
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  543852
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  543845
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  543844
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  543846
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "temporal-forces",
+                     "name":  "Temporal Forces",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23381,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  6,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "ACE SPEC Rare":  20,
+                                       "Special Illustration Rare":  86,
+                                       "Hyper Rare":  139
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  532841
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  541017
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  532845
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  538775
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  536225
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "paldean-fates",
+                     "name":  "Paldean Fates",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2024,
+                     "groupId":  23353,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Shiny Rare":  4,
+                                       "Double Rare":  6,
+                                       "Shiny Ultra Rare":  13,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  26,
+                                       "Special Illustration Rare":  62,
+                                       "Hyper Rare":  64
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  528038
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  528771
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  528040
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  528039
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "paradox-rift",
+                     "name":  "Paradox Rift",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2023,
+                     "groupId":  23286,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  6,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "Special Illustration Rare":  47,
+                                       "Hyper Rare":  82
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  512822
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  512820
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  512815
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  512809
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  512821
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "151",
+                     "name":  "151",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2023,
+                     "groupId":  23237,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  8,
+                                       "Ultra Rare":  16,
+                                       "Illustration Rare":  12,
+                                       "Special Illustration Rare":  32,
+                                       "Hyper Rare":  51
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  504467
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  502000
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  503313
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  501999
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "obsidian-flames",
+                     "name":  "Obsidian Flames",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2023,
+                     "groupId":  23228,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  7,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "Special Illustration Rare":  32,
+                                       "Hyper Rare":  54
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  501256
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  501263
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  501264
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  501266
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  501257
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "paldea-evolved",
+                     "name":  "Paldea Evolved",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2023,
+                     "groupId":  23120,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  7,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "Special Illustration Rare":  32,
+                                       "Hyper Rare":  58
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  493976
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  496914
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  493974
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  493973
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  493975
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "scarlet-violet",
+                     "name":  "Scarlet \u0026 Violet",
+                     "series":  "Scarlet \u0026 Violet",
+                     "year":  2023,
+                     "groupId":  22873,
+                     "bulkValuePerPack":  0.3,
+                     "pullRates":  {
+                                       "Double Rare":  7,
+                                       "Ultra Rare":  15,
+                                       "Illustration Rare":  13,
+                                       "Special Illustration Rare":  32,
+                                       "Hyper Rare":  53
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  476451
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  478258
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  9,
+                                          "productId":  478336
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  11,
+                                          "productId":  478756
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  476452
+                                      }
+                                  ]
+                 }
+             ]
 }

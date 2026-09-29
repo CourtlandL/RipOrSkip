@@ -86,7 +86,9 @@ foreach ($set in $config.sets) {
   $sets += [ordered]@{
     id = $set.id
     name = $set.name
+    series = $set.series
     year = $set.year
+    note = $set.note
     bulkValuePerPack = $set.bulkValuePerPack
     rarities = $rarities
     products = $sealed

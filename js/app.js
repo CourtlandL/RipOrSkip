@@ -48,9 +48,19 @@
     priceReset.textContent = `Use market price (${money.format(state.product.price)})`;
   }
 
+  // Grouped by series, keeping the order sets appear in the data.
   function renderSetOptions() {
-    setSelect.innerHTML = sets
-      .map((s) => `<option value="${s.id}">${s.name} (${s.year})</option>`)
+    const series = [...new Set(sets.map((s) => s.series))];
+    setSelect.innerHTML = series
+      .map(
+        (name) => `
+        <optgroup label="${escapeHtml(name)}">
+          ${sets
+            .filter((s) => s.series === name)
+            .map((s) => `<option value="${s.id}">${escapeHtml(s.name)} (${s.year})</option>`)
+            .join("")}
+        </optgroup>`
+      )
       .join("");
     setSelect.value = state.set.id;
   }
@@ -75,8 +85,10 @@
     results.innerHTML = `
       <div class="verdict verdict-${verdict}">
         <span class="verdict-label">${verdict === "rip" ? "Rip it" : "Skip it"}</span>
-        <span class="verdict-detail">${state.set.name} · ${state.product.name}</span>
+        <span class="verdict-detail">${escapeHtml(state.set.name)} · ${state.product.name}</span>
       </div>
+
+      ${state.set.note ? `<p class="set-note">${escapeHtml(state.set.note)}</p>` : ""}
 
       ${meter(a.valueRatio)}
 
