@@ -266,6 +266,59 @@ select {
   .odds td:nth-child(5)::before { content: "Avg value"; }
 }
 
+/* Chase cards */
+.subhead {
+  margin-top: 28px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.chase {
+  padding: 0;
+  list-style: none;
+}
+
+.chase li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.chase a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.chase a:hover {
+  text-decoration: underline;
+}
+
+.chase-price {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  align-self: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.chase-meta {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.source {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.source a {
+  color: var(--muted);
+}
+
 .site-footer {
   margin-top: 64px;
   padding-bottom: 32px;

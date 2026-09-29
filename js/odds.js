@@ -1,12 +1,9 @@
-// Odds math. Pure functions — no page code in here.
+// Odds math. Pure functions - no page code in here.
+//
+// Each rarity's perPack is the chance a single pack contains one, treated
+// independently of the other rarities (so a pack can hold more than one hit).
 
 window.RipOdds = (function () {
-  // Chance that a single pack contains no hit at all.
-  function missChance(set) {
-    const hitChance = set.rarities.reduce((sum, r) => sum + r.perPack, 0);
-    return Math.max(0, 1 - hitChance);
-  }
-
   // Chance of at least one of this rarity across `packs` packs.
   function atLeastOne(perPack, packs) {
     return 1 - Math.pow(1 - perPack, packs);
@@ -19,15 +16,16 @@ window.RipOdds = (function () {
     );
   }
 
-  // Value of one simulated pack. Sampling happens here so card-level
-  // values can replace rarity averages later without touching anything else.
+  // Value of one simulated pack: each hit rarity rolls separately, and a hit
+  // is a random card of that rarity at its current market price.
   function simulatePack(set) {
-    let roll = Math.random();
+    let value = set.bulkValuePerPack;
     for (const r of set.rarities) {
-      if (roll < r.perPack) return set.bulkValuePerPack + r.avgValue;
-      roll -= r.perPack;
+      if (Math.random() < r.perPack) {
+        value += r.cards[Math.floor(Math.random() * r.cards.length)].price;
+      }
     }
-    return set.bulkValuePerPack;
+    return value;
   }
 
   // Monte Carlo estimate of how often opening the product beats its price.
@@ -44,13 +42,14 @@ window.RipOdds = (function () {
   function analyze(set, product) {
     const packs = product.packs;
     const ev = expectedValuePerPack(set) * packs;
+    const noHitPerPack = set.rarities.reduce((prob, r) => prob * (1 - r.perPack), 1);
     return {
       packs,
       price: product.price,
       expectedValue: ev,
       expectedProfit: ev - product.price,
       profitChance: profitChance(set, product),
-      anyHitChance: 1 - Math.pow(missChance(set), packs),
+      anyHitChance: 1 - Math.pow(noHitPerPack, packs),
       rarities: set.rarities.map((r) => ({
         name: r.name,
         oneIn: 1 / r.perPack,
@@ -61,5 +60,19 @@ window.RipOdds = (function () {
     };
   }
 
-  return { analyze };
+  // Most valuable cards in the set, with the chance of pulling each one.
+  function chaseCards(set, product, limit = 5) {
+    return set.rarities
+      .flatMap((r) =>
+        r.cards.map((c) => ({
+          ...c,
+          rarity: r.name,
+          chance: atLeastOne(r.perPack / r.cards.length, product.packs),
+        }))
+      )
+      .sort((a, b) => b.price - a.price)
+      .slice(0, limit);
+  }
+
+  return { analyze, chaseCards };
 })();

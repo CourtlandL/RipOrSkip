@@ -1,0 +1,91 @@
+{
+  "_comment": "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are 'one in N packs' ESTIMATES and still need verifying. bulkValuePerPack is an estimate of the non-hit cards in a pack.",
+  "sets": [
+    {
+      "id": "destined-rivals",
+      "name": "Destined Rivals",
+      "year": 2025,
+      "groupId": 24269,
+      "bulkValuePerPack": 0.3,
+      "pullRates": {
+        "Double Rare": 5,
+        "Ultra Rare": 16,
+        "Illustration Rare": 12,
+        "Special Illustration Rare": 94,
+        "Hyper Rare": 149
+      },
+      "products": [
+        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 624683 },
+        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 625670 },
+        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 624676 },
+        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 624675 },
+        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 624679 }
+      ]
+    },
+    {
+      "id": "journey-together",
+      "name": "Journey Together",
+      "year": 2025,
+      "groupId": 24073,
+      "bulkValuePerPack": 0.3,
+      "pullRates": {
+        "Double Rare": 5,
+        "Ultra Rare": 15,
+        "Illustration Rare": 12,
+        "Special Illustration Rare": 86,
+        "Hyper Rare": 137
+      },
+      "products": [
+        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 610935 },
+        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 610953 },
+        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 610930 },
+        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 610929 },
+        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 610931 }
+      ]
+    },
+    {
+      "id": "surging-sparks",
+      "name": "Surging Sparks",
+      "year": 2024,
+      "groupId": 23651,
+      "bulkValuePerPack": 0.3,
+      "pullRates": {
+        "Double Rare": 5,
+        "Ultra Rare": 15,
+        "Illustration Rare": 11,
+        "ACE SPEC Rare": 20,
+        "Special Illustration Rare": 86,
+        "Hyper Rare": 144
+      },
+      "products": [
+        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 565604 },
+        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 565629 },
+        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 565630 },
+        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 565632 },
+        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 565606 }
+      ]
+    },
+    {
+      "id": "stellar-crown",
+      "name": "Stellar Crown",
+      "year": 2024,
+      "groupId": 23537,
+      "bulkValuePerPack": 0.3,
+      "pullRates": {
+        "Double Rare": 5,
+        "Ultra Rare": 15,
+        "Illustration Rare": 12,
+        "ACE SPEC Rare": 20,
+        "Special Illustration Rare": 90,
+        "Hyper Rare": 144
+      },
+      "products": [
+        { "id": "pack", "name": "Booster Pack", "packs": 1, "productId": 557331 },
+        { "id": "bundle", "name": "Booster Bundle", "packs": 6, "productId": 557345 },
+        { "id": "etb", "name": "Elite Trainer Box", "packs": 9, "productId": 557350 },
+        { "id": "pc-etb", "name": "Pokémon Center ETB", "packs": 11, "productId": 557340 },
+        { "id": "box", "name": "Booster Box", "packs": 36, "productId": 557354 }
+      ]
+    }
+  ]
+}

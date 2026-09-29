@@ -1,15 +1,20 @@
 // Page wiring: pickers, URL state, and rendering results.
 
 (function () {
-  const { sets } = window.RIP_DATA;
+  const { sets, updatedAt } = window.RIP_DATA;
 
   const setSelect = document.getElementById("set-select");
   const productList = document.getElementById("product-list");
   const results = document.getElementById("results");
+  const updated = document.getElementById("updated");
 
   const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
-  const pct = (x) => (x >= 0.995 && x < 1 ? ">99%" : Math.round(x * 100) + "%");
+  const pct = (x) =>
+    x >= 0.995 && x < 1 ? ">99%" : x > 0 && x < 0.005 ? "<1%" : Math.round(x * 100) + "%";
   const signedMoney = (x) => (x >= 0 ? "+" : "−") + money.format(Math.abs(x));
+  const tcgplayerUrl = (productId) => `https://www.tcgplayer.com/product/${productId}`;
+  const escapeHtml = (s) =>
+    s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
   let state = readHash();
 
@@ -90,6 +95,25 @@
             .join("")}
         </tbody>
       </table>
+
+      <h3 class="subhead">Top chase cards</h3>
+      <ol class="chase">
+        ${window.RipOdds.chaseCards(state.set, state.product)
+          .map(
+            (c) => `
+          <li>
+            <a href="${tcgplayerUrl(c.productId)}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>
+            <span class="chase-meta">${c.rarity} · ${pct(c.chance)} chance in this ${state.product.name}</span>
+            <span class="chase-price">${money.format(c.price)}</span>
+          </li>`
+          )
+          .join("")}
+      </ol>
+
+      <p class="source">
+        ${state.product.name} price from
+        <a href="${tcgplayerUrl(state.product.productId)}" target="_blank" rel="noopener">TCGplayer</a>.
+      </p>
     `;
   }
 
@@ -115,6 +139,12 @@
     if (!button) return;
     state.product = state.set.products.find((p) => p.id === button.dataset.id);
     update();
+  });
+
+  updated.textContent = new Date(updatedAt).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
   });
 
   renderSetOptions();

@@ -1,0 +1,50 @@
+name: Update prices and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Daily at 21:00 UTC, after TCGCSV's ~20:00 UTC refresh.
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pushes deploy the site as committed; the daily run and manual runs refresh prices first.
+      - name: Update prices
+        if: github.event_name != 'push'
+        shell: pwsh
+        run: ./scripts/update-prices.ps1
+
+      - name: Commit updated prices
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/data.js
+          git diff --cached --quiet || (git commit -m "Update prices" && git push)
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
