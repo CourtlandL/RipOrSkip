@@ -73,6 +73,7 @@ function Get-Sealed($items, $priceById, $ownerId, $label) {
     }
     if ($item.kind) { $product.kind = $item.kind }
     if ($item.retail) { $product.retail = $item.retail }
+    if ($item.releaseDate) { $product.releaseDate = $item.releaseDate }
     $sealed += $product
   }
   , $sealed
@@ -80,6 +81,12 @@ function Get-Sealed($items, $priceById, $ownerId, $label) {
 
 $config = Get-Content (Join-Path $root 'data/sets.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $sets = @()
+
+# Release dates (TCGplayer's publish date per set), used to decide what's still at retail.
+$releaseDates = @{}
+foreach ($g in Get-Json "$base/groups") {
+  $releaseDates[[int]$g.groupId] = ([datetime]$g.publishedOn).ToString('yyyy-MM-dd')
+}
 
 foreach ($set in $config.sets) {
   Write-Host "Updating $($set.name)..."
@@ -158,6 +165,7 @@ foreach ($set in $config.sets) {
     name = $set.name
     series = $set.series
     year = $set.year
+    releaseDate = $releaseDates[[int]$set.groupId]
     note = $set.note
     pullRateSource = $set.pullRateSource
     estimateSource = $set.estimateSource
@@ -175,6 +183,7 @@ foreach ($collection in $config.collections) {
     name = $collection.name
     series = 'Multi-set collections'
     year = $collection.year
+    releaseDate = $collection.releaseDate
     rarities = @()
     products = Get-Sealed $collection.products @{} $collection.id $collection.name
   }

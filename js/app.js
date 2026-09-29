@@ -54,8 +54,32 @@
     history.replaceState(null, "", hash);
   }
 
-  // The product's price in the current mode, or undefined when it has no MSRP on file.
-  const modePrice = (product) => (priceMode === "retail" ? product.retail : product.price);
+  // Retail only makes sense for products still realistically on shelves: released in
+  // the last RETAIL_YEARS years (the product's own date for later reprint collections,
+  // otherwise its set's). Older ones are judged at market price even in retail mode.
+  const RETAIL_YEARS = 3;
+  const retailCutoff = (() => {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - RETAIL_YEARS);
+    return d.toISOString().slice(0, 10);
+  })();
+  const ownerSet = new Map(sets.flatMap((s) => s.products.map((p) => [p, s])));
+  const releaseDate = (product) => product.releaseDate ?? ownerSet.get(product)?.releaseDate;
+  const atRetail = (product) => Boolean(product.retail) && releaseDate(product) >= retailCutoff;
+
+  // The product's price in the current mode, or undefined when retail doesn't apply to it.
+  const modePrice = (product) =>
+    priceMode === "retail" ? (atRetail(product) ? product.retail : undefined) : product.price;
+
+  // Why a product has no retail price, for notes and product buttons.
+  function retailGap(product) {
+    if (!product.retail) return { short: "no MSRP", note: "No retail price (MSRP) on file for this product, so it's shown at market price." };
+    const released = new Date(`${releaseDate(product)}T00:00:00`).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    return {
+      short: "not at retail",
+      note: `Released ${released}, more than ${RETAIL_YEARS} years ago, so it's rarely on shelves at retail. Shown at market price.`,
+    };
+  }
 
   function currentPrice() {
     return state.customPrice ?? modePrice(state.product) ?? state.product.price;
@@ -63,7 +87,7 @@
 
   function priceLabel() {
     if (state.customPrice !== null) return "Your price";
-    if (priceMode === "retail" && state.product.retail) return "Retail price";
+    if (priceMode === "retail" && atRetail(state.product)) return "Retail price";
     return "Market price";
   }
 
@@ -106,7 +130,7 @@
         <button type="button" class="product${p.id === state.product.id ? " is-active" : ""}"
                 data-id="${p.id}" aria-pressed="${p.id === state.product.id}">
           <span class="product-name">${escapeHtml(p.name)}</span>
-          <span class="product-meta">${p.packs} pack${p.packs > 1 ? "s" : ""} · ${modePrice(p) ? money.format(modePrice(p)) : "no MSRP"}</span>
+          <span class="product-meta">${p.packs} pack${p.packs > 1 ? "s" : ""} · ${modePrice(p) ? money.format(modePrice(p)) : retailGap(p).short}</span>
         </button>`
       )
       .join("");
@@ -123,8 +147,8 @@
         `Only the ${a.packs} booster packs are counted. Promo cards and accessories aren't included in the value.`,
       a.multiSet &&
         `Contains ${parts.map((c) => `${c.packs} ${c.set.name}`).join(", ")} pack${a.packs > 1 ? "s" : ""}.`,
-      priceMode === "retail" && !state.product.retail && state.customPrice === null &&
-        "No retail price (MSRP) on file for this product, so it's shown at market price.",
+      priceMode === "retail" && !atRetail(state.product) && state.customPrice === null &&
+        retailGap(state.product).note,
       ...partSets.map((s) => s.note),
     ]);
 
@@ -260,7 +284,10 @@
 
   function renderLeaderboard() {
     const ranking = (rankings[priceMode] ??= buildRanking());
-    lbSub.textContent = `Every set and product, ranked at ${MODE_LABEL[priceMode]} prices. Pick one to open it in the calculator.`;
+    lbSub.textContent =
+      priceMode === "retail"
+        ? `Products from the last ${RETAIL_YEARS} years, ranked at retail (MSRP) prices. Pick one to open it in the calculator.`
+        : "Every set and product, ranked at market prices. Pick one to open it in the calculator.";
     const sorted = [...ranking].sort(lbSorts[lbSort.value]);
     const shown = lbShowAll ? sorted : sorted.slice(0, LB_TOP);
 

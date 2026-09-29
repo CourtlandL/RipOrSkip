@@ -1106,7 +1106,8 @@
                                           "name":  "Great Tusk \u0026 Iron Treads Premium Collection",
                                           "packs":  11,
                                           "productId":  665113,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "releaseDate":  "2025-12-01"
                                       }
                                   ]
                  },
@@ -1229,7 +1230,8 @@
                                           "packs":  12,
                                           "productId":  609597,
                                           "kind":  "collection",
-                                          "retail":  59.99
+                                          "retail":  59.99,
+                                          "releaseDate":  "2024-11-01"
                                       }
                                   ]
                  },
@@ -1893,7 +1895,8 @@
                                                  "priceGroupId":  2374,
                                                  "retail":  119.99
                                              }
-                                         ]
+                                         ],
+                            "releaseDate":  "2025-11-01"
                         },
                         {
                             "id":  "unova-heavy-hitters",
@@ -1919,7 +1922,8 @@
                                                  "priceGroupId":  24325,
                                                  "retail":  49.99
                                              }
-                                         ]
+                                         ],
+                            "releaseDate":  "2025-12-01"
                         }
                     ]
 }
