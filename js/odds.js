@@ -40,7 +40,8 @@ window.RipOdds = (function () {
   }
 
   // `price` defaults to the product's market price; pass one to use your own.
-  function analyze(set, product, price = product.price) {
+  // `runs` is the simulation size for the chance of profit.
+  function analyze(set, product, price = product.price, runs = 20000) {
     const packs = product.packs;
     const ev = expectedValuePerPack(set) * packs;
     const noHitPerPack = set.rarities.reduce((prob, r) => prob * (1 - r.perPack), 1);
@@ -50,7 +51,7 @@ window.RipOdds = (function () {
       expectedValue: ev,
       expectedProfit: ev - price,
       valueRatio: price > 0 ? ev / price : Infinity,
-      profitChance: profitChance(set, packs, price),
+      profitChance: profitChance(set, packs, price, runs),
       anyHitChance: 1 - Math.pow(noHitPerPack, packs),
       rarities: set.rarities.map((r) => ({
         name: r.name,

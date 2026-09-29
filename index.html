@@ -19,7 +19,24 @@
       Pull rates are estimates and still being verified.
     </p>
 
-    <section class="step">
+    <section class="leaderboard" aria-labelledby="lb-title">
+      <div class="lb-head">
+        <h2 id="lb-title">Best to rip right now</h2>
+        <label class="lb-sort">
+          <span>Sort by</span>
+          <select id="lb-sort">
+            <option value="value">Best value</option>
+            <option value="chance">Best chance of profit</option>
+            <option value="profit">Expected profit ($)</option>
+          </select>
+        </label>
+      </div>
+      <p class="lb-sub">Every set and product, ranked at current market prices. Pick one to open it in the calculator.</p>
+      <ol id="lb-list" class="lb-list"></ol>
+      <button id="lb-toggle" type="button" class="link-button"></button>
+    </section>
+
+    <section class="step" id="calculator">
       <h2><span class="step-num">1</span> Pick a set</h2>
       <select id="set-select" aria-label="Set"></select>
     </section>

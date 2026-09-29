@@ -9,6 +9,10 @@
   const updated = document.getElementById("updated");
   const priceInput = document.getElementById("price-input");
   const priceReset = document.getElementById("price-reset");
+  const lbList = document.getElementById("lb-list");
+  const lbSort = document.getElementById("lb-sort");
+  const lbToggle = document.getElementById("lb-toggle");
+  const LB_TOP = 10;
 
   const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
   const pct = (x) =>
@@ -178,6 +182,61 @@
       </div>`;
   }
 
+  // Leaderboard: every set × product at market price. Computed once, re-sorted on demand.
+  let ranking = null;
+  let lbShowAll = false;
+
+  const lbSorts = {
+    value: (a, b) => b.valueRatio - a.valueRatio,
+    chance: (a, b) => b.profitChance - a.profitChance || b.valueRatio - a.valueRatio,
+    profit: (a, b) => b.expectedProfit - a.expectedProfit,
+  };
+
+  function buildRanking() {
+    ranking = sets.flatMap((set) =>
+      set.products.map((product) => ({
+        set,
+        product,
+        ...window.RipOdds.analyze(set, product, product.price, 4000),
+      }))
+    );
+  }
+
+  function renderLeaderboard() {
+    if (!ranking) buildRanking();
+    const sorted = [...ranking].sort(lbSorts[lbSort.value]);
+    const shown = lbShowAll ? sorted : sorted.slice(0, LB_TOP);
+
+    lbList.innerHTML = shown
+      .map(
+        (r, i) => `
+        <li>
+          <button type="button" class="lb-row" data-set="${r.set.id}" data-product="${r.product.id}">
+            <span class="lb-rank">${i + 1}</span>
+            <span class="lb-name">
+              <strong>${escapeHtml(r.set.name)}</strong>
+              <span>${r.product.name} · ${r.packs} pack${r.packs > 1 ? "s" : ""}</span>
+            </span>
+            <span class="lb-metric">
+              <span class="lb-label">Value</span>
+              <span class="${r.valueRatio >= 1 ? "pos" : "neg"}">${Math.round(r.valueRatio * 100)}%</span>
+            </span>
+            <span class="lb-metric">
+              <span class="lb-label">Profit chance</span>
+              <span>${pct(r.profitChance)}</span>
+            </span>
+            <span class="lb-metric lb-money">
+              <span class="lb-label">EV / price</span>
+              <span>${money.format(r.expectedValue)} / ${money.format(r.price)}</span>
+            </span>
+          </button>
+        </li>`
+      )
+      .join("");
+
+    lbToggle.textContent = lbShowAll ? `Show top ${LB_TOP}` : `Show all ${ranking.length}`;
+  }
+
   function update() {
     writeHash();
     renderProducts();
@@ -218,6 +277,23 @@
     update();
   });
 
+  lbSort.addEventListener("change", renderLeaderboard);
+
+  lbToggle.addEventListener("click", () => {
+    lbShowAll = !lbShowAll;
+    renderLeaderboard();
+  });
+
+  lbList.addEventListener("click", (e) => {
+    const row = e.target.closest(".lb-row");
+    if (!row) return;
+    const set = sets.find((s) => s.id === row.dataset.set);
+    state = { set, product: set.products.find((p) => p.id === row.dataset.product), customPrice: null };
+    setSelect.value = set.id;
+    update();
+    document.getElementById("calculator").scrollIntoView({ behavior: "smooth" });
+  });
+
   updated.textContent = new Date(updatedAt).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
@@ -226,4 +302,6 @@
 
   renderSetOptions();
   update();
+  // The leaderboard simulates every product, so let the calculator paint first.
+  setTimeout(renderLeaderboard, 0);
 })();

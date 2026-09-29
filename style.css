@@ -60,6 +60,141 @@ main,
   font-size: 0.875rem;
 }
 
+/* Leaderboard */
+.leaderboard {
+  margin-top: 32px;
+}
+
+.lb-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.lb-head h2 {
+  font-size: 1.25rem;
+}
+
+.lb-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.lb-sort select {
+  width: auto;
+  padding: 8px 10px;
+  font-size: 0.875rem;
+}
+
+.lb-sub {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.lb-list {
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.lb-list li + li {
+  margin-top: 6px;
+}
+
+.lb-row {
+  display: grid;
+  grid-template-columns: 2rem 1fr 4.5rem 6.5rem 11rem;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lb-row:hover {
+  border-color: var(--accent);
+}
+
+.lb-rank {
+  color: var(--muted);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.lb-name {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.lb-name span {
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.lb-metric {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.lb-label {
+  color: var(--muted);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.lb-money {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.lb-metric .pos {
+  color: var(--pos);
+}
+
+.lb-metric .neg {
+  color: var(--neg);
+}
+
+#lb-toggle {
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .lb-row {
+    grid-template-columns: 1.5rem 1fr 1fr;
+    gap: 8px 10px;
+  }
+
+  .lb-name {
+    grid-column: 2 / -1;
+  }
+
+  .lb-metric:nth-of-type(3) {
+    grid-column: 2;
+  }
+
+  .lb-money {
+    grid-column: 2 / -1;
+  }
+}
+
 /* Steps */
 .step {
   margin-top: 32px;
