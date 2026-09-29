@@ -418,7 +418,7 @@
                      "year":  2025,
                      "groupId":  24325,
                      "bulkValuePerPack":  0.3,
-                     "note":  "Black White Rares aren\u0027t counted: none turned up in 700+ packs, so their rate is unknown.",
+                     "note":  "The Black White Rare rate (Victini, Zekrom ex) is a community estimate of about 1 in 496 packs. TCGplayer found none in 700+ packs, so it hasn\u0027t been measured precisely.",
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  700,
@@ -436,7 +436,11 @@
                                                                    "percent":  5.14,
                                                                    "match":  "Master Ball Pattern"
                                                                },
-                                       "Special Illustration Rare":  1.25
+                                       "Special Illustration Rare":  1.25,
+                                       "Black White Rare":  {
+                                                                "percent":  0.2016,
+                                                                "estimated":  true
+                                                            }
                                    },
                      "products":  [
                                       {
@@ -463,7 +467,11 @@
                                           "packs":  11,
                                           "productId":  630687
                                       }
-                                  ]
+                                  ],
+                     "estimateSource":  {
+                                            "name":  "PokéPatch community openings",
+                                            "url":  "https://pokepatch.com/2025/07/20/black-bolt-white-flare-pull-rates-in-pokemon-tcg-sets/"
+                                        }
                  },
                  {
                      "id":  "white-flare",
@@ -472,7 +480,7 @@
                      "year":  2025,
                      "groupId":  24326,
                      "bulkValuePerPack":  0.3,
-                     "note":  "Black White Rares aren\u0027t counted: none turned up in 700+ packs, so their rate is unknown.",
+                     "note":  "The Black White Rare rate (Victini, Reshiram ex) is a community estimate of about 1 in 496 packs. TCGplayer found none in 700+ packs, so it hasn\u0027t been measured precisely.",
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  700,
@@ -490,7 +498,11 @@
                                                                    "percent":  5.14,
                                                                    "match":  "Master Ball Pattern"
                                                                },
-                                       "Special Illustration Rare":  1.25
+                                       "Special Illustration Rare":  1.25,
+                                       "Black White Rare":  {
+                                                                "percent":  0.2016,
+                                                                "estimated":  true
+                                                            }
                                    },
                      "products":  [
                                       {
@@ -517,7 +529,11 @@
                                           "packs":  11,
                                           "productId":  630688
                                       }
-                                  ]
+                                  ],
+                     "estimateSource":  {
+                                            "name":  "PokéPatch community openings",
+                                            "url":  "https://pokepatch.com/2025/07/20/black-bolt-white-flare-pull-rates-in-pokemon-tcg-sets/"
+                                        }
                  },
                  {
                      "id":  "destined-rivals",

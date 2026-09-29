@@ -480,6 +480,15 @@ select {
   font-weight: 500;
 }
 
+.est {
+  padding: 1px 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 0.6875rem;
+  cursor: help;
+}
+
 .bar {
   height: 6px;
   margin-bottom: 4px;

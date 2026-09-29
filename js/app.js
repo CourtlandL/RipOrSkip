@@ -137,7 +137,7 @@
               (r) => `
             <tr>
               <td>${r.name}</td>
-              <td>${r.oneIn <= 1 ? "Every pack" : `1 in ${Math.round(r.oneIn).toLocaleString("en-US")}`}</td>
+              <td>${r.oneIn <= 1 ? "Every pack" : `1 in ${Math.round(r.oneIn).toLocaleString("en-US")}`}${r.estimated ? ` <span class="est" title="Community estimate, not a large measured study">est.</span>` : ""}</td>
               <td>
                 <div class="bar"><span style="width:${(r.chance * 100).toFixed(1)}%"></span></div>
                 ${pct(r.chance)}
@@ -176,8 +176,10 @@
     const src = set.pullRateSource;
     if (!src) return "";
     const packs = src.packs ? ` (${src.packs.toLocaleString("en-US")}+ packs opened)` : "";
+    const est = set.estimateSource;
     return `${withSetName ? `${escapeHtml(set.name)} pull rates` : "Pull rates"} from the
-      <a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>${packs}.`;
+      <a href="${src.url}" target="_blank" rel="noopener">${escapeHtml(src.name)}</a>${packs}.
+      ${est ? `Estimated rates from <a href="${est.url}" target="_blank" rel="noopener">${escapeHtml(est.name)}</a>.` : ""}`;
   }
 
   function stat(label, value, tone = "") {

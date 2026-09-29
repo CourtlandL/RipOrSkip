@@ -92,6 +92,7 @@ window.RipOdds = (function () {
         return {
           name: multiSet ? `${c.set.name} · ${r.name}` : r.name,
           oneIn: 1 / r.perPack,
+          estimated: Boolean(r.estimated),
           packs: c.packs,
           chance: guaranteed ? 1 : atLeastOne(r.perPack, c.packs),
           expectedCount: r.perPack * c.packs + guaranteed,

@@ -94,15 +94,19 @@ foreach ($set in $config.sets) {
 
   $rarities = @()
   foreach ($rate in $set.pullRates.PSObject.Properties) {
-    # A rate is either a percent (cards matched by rarity) or {percent, match}
-    # (cards matched by product name, for pattern foils that share a base rarity).
+    # A rate is either a percent (cards matched by rarity) or {percent, match?, estimated?}:
+    # `match` picks cards by product name instead (pattern foils that share a base rarity),
+    # `estimated` flags a rate with no large measured study behind it.
+    $byRarity = { (Get-Rarity $_) -eq $rate.Name -and $_.name -notlike '*Ball Pattern*' }
+    $estimated = $false
     if ($rate.Value -is [PSCustomObject]) {
       $percent = [double]$rate.Value.percent
+      $estimated = [bool]$rate.Value.estimated
       $match = $rate.Value.match
-      $inTier = { $_.name -like "*$match*" }
+      $inTier = if ($match) { { $_.name -like "*$match*" } } else { $byRarity }
     } else {
       $percent = [double]$rate.Value
-      $inTier = { (Get-Rarity $_) -eq $rate.Name -and $_.name -notlike '*Ball Pattern*' }
+      $inTier = $byRarity
     }
 
     $cards = @(
@@ -115,12 +119,14 @@ foreach ($set in $config.sets) {
     if ($cards.Count -eq 0) { throw "$($set.name): no priced cards found for rarity '$($rate.Name)'" }
 
     $avg = ($cards | ForEach-Object { $_.price } | Measure-Object -Average).Average
-    $rarities += [ordered]@{
+    $rarity = [ordered]@{
       name = $rate.Name
       perPack = $percent / 100
       avgValue = [math]::Round($avg, 2)
       cards = $cards
     }
+    if ($estimated) { $rarity.estimated = $true }
+    $rarities += $rarity
   }
 
   $sealed = Get-Sealed $set.products $priceById $set.id $set.name
@@ -132,6 +138,7 @@ foreach ($set in $config.sets) {
     year = $set.year
     note = $set.note
     pullRateSource = $set.pullRateSource
+    estimateSource = $set.estimateSource
     bulkValuePerPack = $set.bulkValuePerPack
     rarities = $rarities
     products = $sealed
