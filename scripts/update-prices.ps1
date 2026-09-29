@@ -87,23 +87,44 @@ foreach ($set in $config.sets) {
   $products = @()
   $prices = @()
   foreach ($groupId in @($set.groupId) + @($set.extraGroupIds | Where-Object { $_ })) {
-    $products += Get-Json "$base/$groupId/products"
+    $products += Get-Json "$base/$groupId/products" | ForEach-Object {
+      $_ | Add-Member -NotePropertyName group -NotePropertyValue $groupId -PassThru
+    }
     $prices += Get-Json "$base/$groupId/prices"
   }
   $priceById = Get-PriceMap $prices
 
   $rarities = @()
   foreach ($rate in $set.pullRates.PSObject.Properties) {
-    # A rate is either a percent (cards matched by rarity) or {percent, match?, estimated?}:
-    # `match` picks cards by product name instead (pattern foils that share a base rarity),
-    # `estimated` flags a rate with no large measured study behind it.
+    # A rate is either a percent (cards matched by rarity) or an object:
+    #   percent    percent of packs containing this tier
+    #   match      product name contains this (pattern foils that share a base rarity)
+    #   pattern    product name matches this regex (e.g. Sword & Shield "(Alternate Full Art)")
+    #   numbers    "lo-hi" range of the card number (e.g. 204-225, or TG01-TG11 as 1-11)
+    #   group      TCGplayer group the cards are in (default: the set's own group)
+    #   estimated  flags a rate with no large measured study behind it
+    # Tiers defined by pattern/numbers/group don't need a matching TCGplayer rarity.
     $byRarity = { (Get-Rarity $_) -eq $rate.Name -and $_.name -notlike '*Ball Pattern*' }
     $estimated = $false
     if ($rate.Value -is [PSCustomObject]) {
-      $percent = [double]$rate.Value.percent
-      $estimated = [bool]$rate.Value.estimated
-      $match = $rate.Value.match
-      $inTier = if ($match) { { $_.name -like "*$match*" } } else { $byRarity }
+      $rule = $rate.Value
+      $percent = [double]$rule.percent
+      $estimated = [bool]$rule.estimated
+      if ($rule.match) {
+        $inTier = { $_.name -like "*$($rule.match)*" }
+      } elseif ($rule.pattern -or $rule.numbers -or $rule.group) {
+        $group = if ($rule.group) { $rule.group } else { $set.groupId }
+        $lo, $hi = if ($rule.numbers) { $rule.numbers -split '-' | ForEach-Object { [int]$_ } } else { 0, [int]::MaxValue }
+        $inTier = {
+          $number = ($_.extendedData | Where-Object name -eq 'Number').value
+          $n = if ($number -match '^\D*(\d+)') { [int]$Matches[1] } else { -1 }
+          $_.group -eq $group -and $n -ge $lo -and $n -le $hi -and
+            (Get-Rarity $_) -and (Get-Rarity $_) -ne 'Code Card' -and
+            (-not $rule.pattern -or $_.name -cmatch $rule.pattern)
+        }
+      } else {
+        $inTier = $byRarity
+      }
     } else {
       $percent = [double]$rate.Value
       $inTier = $byRarity

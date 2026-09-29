@@ -1288,6 +1288,435 @@
                                           "productId":  476452
                                       }
                                   ]
+                 },
+                 {
+                     "id":  "crown-zenith",
+                     "name":  "Crown Zenith",
+                     "series":  "Sword \u0026 Shield",
+                     "year":  2023,
+                     "groupId":  17688,
+                     "extraGroupIds":  [
+                                           17689
+                                       ],
+                     "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  1900,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Crown-Zenith-Pull-Rates/56af3032-cb34-4da1-92fb-9cf206d10c0f/"
+                                        },
+                     "pullRates":  {
+                                       "Galarian Gallery":  {
+                                                                "percent":  22.4,
+                                                                "numbers":  "1-34",
+                                                                "group":  17689
+                                                            },
+                                       "Pokémon V":  {
+                                                         "percent":  12.35,
+                                                         "pattern":  "^[^(]* V$"
+                                                     },
+                                       "Galarian Gallery V / Trainer":  {
+                                                                            "percent":  12,
+                                                                            "numbers":  "35-66",
+                                                                            "group":  17689
+                                                                        },
+                                       "VMAX / VSTAR":  {
+                                                            "percent":  5.3,
+                                                            "pattern":  "^[^(]* (VMAX|VSTAR)( \\(\\d+\\))?$"
+                                                        },
+                                       "Radiant Rare":  4.55,
+                                       "Texture Energy":  {
+                                                              "percent":  1.9,
+                                                              "pattern":  "\\(Texture Full Art\\)$"
+                                                          },
+                                       "Full Art Trainer":  {
+                                                                "percent":  0.95,
+                                                                "pattern":  "\\(Full Art\\)$"
+                                                            },
+                                       "Galarian Gallery Gold":  {
+                                                                     "percent":  0.8,
+                                                                     "numbers":  "67-70",
+                                                                     "group":  17689
+                                                                 },
+                                       "Secret Rare":  {
+                                                           "percent":  0.75,
+                                                           "pattern":  "\\(Secret\\)",
+                                                           "numbers":  "160-160"
+                                                       }
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  453466
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  527562
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  10,
+                                          "productId":  453470
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB Plus",
+                                          "packs":  12,
+                                          "productId":  454246
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "silver-tempest",
+                     "name":  "Silver Tempest",
+                     "series":  "Sword \u0026 Shield",
+                     "year":  2022,
+                     "groupId":  3170,
+                     "extraGroupIds":  [
+                                           17674
+                                       ],
+                     "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Silver-Tempest-Pull-Rates/6490d591-e582-4930-8446-00e190876d30/"
+                                        },
+                     "pullRates":  {
+                                       "Pokémon V":  {
+                                                         "percent":  11.55,
+                                                         "pattern":  "^[^(]* V$"
+                                                     },
+                                       "Trainer Gallery":  {
+                                                               "percent":  8.25,
+                                                               "numbers":  "1-11",
+                                                               "group":  17674
+                                                           },
+                                       "Radiant Rare":  4.55,
+                                       "VMAX / VSTAR":  {
+                                                            "percent":  3.72,
+                                                            "pattern":  "^[^(]* (VMAX|VSTAR)( \\(\\d+\\))?$"
+                                                        },
+                                       "Trainer Gallery V / Trainer":  {
+                                                                           "percent":  3.08,
+                                                                           "numbers":  "12-28",
+                                                                           "group":  17674
+                                                                       },
+                                       "Full Art Pokémon V":  {
+                                                                  "percent":  2.1,
+                                                                  "pattern":  " V \\(Full Art\\)$"
+                                                              },
+                                       "Rainbow Rare":  {
+                                                            "percent":  1.26,
+                                                            "pattern":  "\\(Secret\\)",
+                                                            "numbers":  "196-209"
+                                                        },
+                                       "Full Art Trainer":  {
+                                                                "percent":  1.01,
+                                                                "pattern":  "[^V] \\(Full Art\\)$"
+                                                            },
+                                       "Gold Rare":  {
+                                                         "percent":  0.94,
+                                                         "pattern":  "\\(Secret\\)",
+                                                         "numbers":  "210-215"
+                                                     },
+                                       "Trainer Gallery Gold VMAX":  {
+                                                                         "percent":  0.9,
+                                                                         "numbers":  "29-30",
+                                                                         "group":  17674
+                                                                     },
+                                       "Alt Art Pokémon V":  {
+                                                                 "percent":  0.6,
+                                                                 "pattern":  "\\(Alternate Full Art\\)$"
+                                                             }
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  283388
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  283396
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  8,
+                                          "productId":  283401
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  10,
+                                          "productId":  285860
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  283389
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "lost-origin",
+                     "name":  "Lost Origin",
+                     "series":  "Sword \u0026 Shield",
+                     "year":  2022,
+                     "groupId":  3118,
+                     "extraGroupIds":  [
+                                           3172
+                                       ],
+                     "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Lost-Origin-Pull-Rates/ba20ac4d-9448-45ce-b919-d856d107c744/"
+                                        },
+                     "pullRates":  {
+                                       "Pokémon V":  {
+                                                         "percent":  11.63,
+                                                         "pattern":  "^[^(]* V$"
+                                                     },
+                                       "Trainer Gallery":  {
+                                                               "percent":  8.29,
+                                                               "numbers":  "1-11",
+                                                               "group":  3172
+                                                           },
+                                       "Radiant Rare":  5.01,
+                                       "VMAX / VSTAR":  {
+                                                            "percent":  4.42,
+                                                            "pattern":  "^[^(]* (VMAX|VSTAR)( \\(\\d+\\))?$"
+                                                        },
+                                       "Trainer Gallery V / Trainer":  {
+                                                                           "percent":  3.17,
+                                                                           "numbers":  "12-28",
+                                                                           "group":  3172
+                                                                       },
+                                       "Full Art Pokémon V":  {
+                                                                  "percent":  1.98,
+                                                                  "pattern":  " V \\(Full Art\\)$"
+                                                              },
+                                       "Full Art Trainer":  {
+                                                                "percent":  1.42,
+                                                                "pattern":  "[^V] \\(Full Art\\)$"
+                                                            },
+                                       "Rainbow Rare":  {
+                                                            "percent":  1.28,
+                                                            "pattern":  "\\(Secret\\)",
+                                                            "numbers":  "197-211"
+                                                        },
+                                       "Trainer Gallery Gold VMAX":  {
+                                                                         "percent":  0.86,
+                                                                         "numbers":  "29-30",
+                                                                         "group":  3172
+                                                                     },
+                                       "Gold Rare":  {
+                                                         "percent":  0.76,
+                                                         "pattern":  "\\(Secret\\)",
+                                                         "numbers":  "212-217"
+                                                     },
+                                       "Alt Art Pokémon V":  {
+                                                                 "percent":  0.5,
+                                                                 "pattern":  "\\(Alternate Full Art\\)$"
+                                                             }
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  277325
+                                      },
+                                      {
+                                          "id":  "bundle",
+                                          "name":  "Booster Bundle",
+                                          "packs":  6,
+                                          "productId":  278819
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  8,
+                                          "productId":  277335
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  10,
+                                          "productId":  277336
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  277324
+                                      }
+                                  ]
+                 },
+                 {
+                     "id":  "astral-radiance",
+                     "name":  "Astral Radiance",
+                     "series":  "Sword \u0026 Shield",
+                     "year":  2022,
+                     "groupId":  3040,
+                     "extraGroupIds":  [
+                                           3068
+                                       ],
+                     "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Astral-Radiance-Pull-Rates/10da749f-9c8b-45c0-b80a-dbd86ca5dcde/"
+                                        },
+                     "pullRates":  {
+                                       "Pokémon V":  {
+                                                         "percent":  12.77,
+                                                         "pattern":  "^[^(]* V$"
+                                                     },
+                                       "Trainer Gallery":  {
+                                                               "percent":  8.48,
+                                                               "numbers":  "1-12",
+                                                               "group":  3068
+                                                           },
+                                       "Trainer Gallery V / Trainer":  {
+                                                                           "percent":  4.1,
+                                                                           "numbers":  "13-30",
+                                                                           "group":  3068
+                                                                       },
+                                       "VMAX / VSTAR":  {
+                                                            "percent":  3.47,
+                                                            "pattern":  "^[^(]* (VMAX|VSTAR)( \\(\\d+\\))?$"
+                                                        },
+                                       "Full Art Pokémon V":  {
+                                                                  "percent":  2.13,
+                                                                  "pattern":  " V \\(Full Art\\)$"
+                                                              },
+                                       "Rainbow Rare":  {
+                                                            "percent":  1.28,
+                                                            "pattern":  "\\(Secret\\)",
+                                                            "numbers":  "190-207"
+                                                        },
+                                       "Full Art Trainer":  {
+                                                                "percent":  1.08,
+                                                                "pattern":  "[^V] \\(Full Art\\)$"
+                                                            },
+                                       "Gold Rare":  {
+                                                         "percent":  0.76,
+                                                         "pattern":  "\\(Secret\\)",
+                                                         "numbers":  "208-216"
+                                                     },
+                                       "Alt Art Pokémon V":  {
+                                                                 "percent":  0.74,
+                                                                 "pattern":  "\\(Alternate Full Art\\)$"
+                                                             }
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  265521
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  8,
+                                          "productId":  265527
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  10,
+                                          "productId":  265528
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  265519
+                                      }
+                                  ],
+                     "note":  "Radiant Rares (Radiant Greninja, Heatran, Hawlucha) aren\u0027t counted: TCGplayer\u0027s study didn\u0027t measure their rate."
+                 },
+                 {
+                     "id":  "evolving-skies",
+                     "name":  "Evolving Skies",
+                     "series":  "Sword \u0026 Shield",
+                     "year":  2021,
+                     "groupId":  2848,
+                     "bulkValuePerPack":  0.3,
+                     "pullRateSource":  {
+                                            "name":  "TCGplayer Authentication Center",
+                                            "packs":  8000,
+                                            "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Evolving-Skies-Pull-Rates/6a743d7b-e5ee-4fd6-9d18-64a636990e8c/"
+                                        },
+                     "pullRates":  {
+                                       "Pokémon V":  {
+                                                         "percent":  10.56,
+                                                         "pattern":  "^[^(]* V$"
+                                                     },
+                                       "Pokémon VMAX":  {
+                                                            "percent":  5.6,
+                                                            "pattern":  "^[^(]* VMAX$"
+                                                        },
+                                       "Full Art":  {
+                                                        "percent":  2.78,
+                                                        "pattern":  "\\(Full Art\\)$"
+                                                    },
+                                       "Alt Art Pokémon V":  {
+                                                                 "percent":  1.1,
+                                                                 "pattern":  "\\(Alternate Full Art\\)$"
+                                                             },
+                                       "Gold Rare":  {
+                                                         "percent":  0.91,
+                                                         "pattern":  "\\(Secret\\)",
+                                                         "numbers":  "226-237"
+                                                     },
+                                       "Rainbow Rare":  {
+                                                            "percent":  0.84,
+                                                            "pattern":  "\\(Secret\\)",
+                                                            "numbers":  "204-225"
+                                                        },
+                                       "Alt Art VMAX":  {
+                                                            "percent":  0.3,
+                                                            "pattern":  "\\(Alternate Art Secret\\)$"
+                                                        }
+                                   },
+                     "products":  [
+                                      {
+                                          "id":  "pack",
+                                          "name":  "Booster Pack",
+                                          "packs":  1,
+                                          "productId":  244337
+                                      },
+                                      {
+                                          "id":  "etb",
+                                          "name":  "Elite Trainer Box",
+                                          "packs":  8,
+                                          "productId":  242443
+                                      },
+                                      {
+                                          "id":  "pc-etb",
+                                          "name":  "Pokémon Center ETB",
+                                          "packs":  10,
+                                          "productId":  245352
+                                      },
+                                      {
+                                          "id":  "box",
+                                          "name":  "Booster Box",
+                                          "packs":  36,
+                                          "productId":  242436
+                                      }
+                                  ]
                  }
              ],
     "collections":  [
