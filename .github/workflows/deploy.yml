@@ -40,6 +40,14 @@ jobs:
           git add js/data.js
           git diff --cached --quiet || (git commit -m "Update prices" && git push)
 
+      # Version the CSS/JS links so browsers fetch fresh files after every deploy
+      # instead of pairing new HTML with cached old scripts.
+      - name: Cache-bust assets
+        run: |
+          version=$(date -u +%Y%m%d%H%M%S)
+          sed -i -E "s/\.(css|js)\"/.\1?v=$version\"/g" index.html
+          grep -E '\?v=' index.html
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
