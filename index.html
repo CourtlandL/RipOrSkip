@@ -26,6 +26,19 @@
       </div>
     </div>
 
+    <div class="options">
+      <label class="switch">
+        <input type="checkbox" id="opt-fees">
+        <span>After selling fees</span>
+        <small>Value cards at what you'd net selling on TCGplayer (fees + shipping)</small>
+      </label>
+      <label class="switch">
+        <input type="checkbox" id="opt-bulk">
+        <span>Count bulk</span>
+        <small>Include commons, uncommons and reverse holos at market price</small>
+      </label>
+    </div>
+
     <p class="notice">
       Market prices are TCGplayer market prices, updated daily (last update <span id="updated"></span>).
       Retail prices are MSRP, for products from the last 3 years. Pull rates come from large pack-opening studies. Each set lists its source.
@@ -72,6 +85,11 @@
       <div id="results"></div>
     </section>
   </main>
+
+  <dialog id="card-view" class="card-view" aria-labelledby="card-title">
+    <button type="button" class="card-close" id="card-close" aria-label="Close">×</button>
+    <div id="card-body"></div>
+  </dialog>
 
   <footer class="site-footer">
     RipOrSkip is not affiliated with Nintendo, The Pokémon Company or Game Freak.

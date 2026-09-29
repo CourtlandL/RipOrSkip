@@ -23,6 +23,10 @@
   const searchInput = document.getElementById("search");
   const searchResults = document.getElementById("search-results");
   const modeButtons = document.querySelectorAll(".price-mode button");
+  const optFees = document.getElementById("opt-fees");
+  const optBulk = document.getElementById("opt-bulk");
+  const cardView = document.getElementById("card-view");
+  const cardBody = document.getElementById("card-body");
   const LB_TOP = 10;
   const MODE_LABEL = { market: "market", retail: "retail (MSRP)" };
 
@@ -37,7 +41,24 @@
   // customPrice is null unless the user typed their own price.
   // priceMode ("market" or "retail") picks which price everything is judged against.
   let state = readHash();
-  let priceMode = new URLSearchParams(location.hash.slice(1)).get("prices") === "retail" ? "retail" : "market";
+  const initialParams = new URLSearchParams(location.hash.slice(1));
+  let priceMode = initialParams.get("prices") === "retail" ? "retail" : "market";
+
+  // Valuation options. A shared link's settings win; otherwise the viewer's last choice.
+  const OPTS_KEY = "riporskip-options";
+  let opts = { fees: false, bulk: false };
+  try {
+    opts = { ...opts, ...JSON.parse(localStorage.getItem(OPTS_KEY) || "{}") };
+  } catch {}
+  if (initialParams.has("fees")) opts.fees = initialParams.get("fees") === "1";
+  if (initialParams.has("bulk")) opts.bulk = initialParams.get("bulk") === "1";
+  const optsKey = () => `${priceMode}|${opts.fees}|${opts.bulk}`;
+
+  // Card view: productId -> { card, rarity, set } for every card on the site.
+  const cardIndex = new Map(
+    sets.flatMap((set) => set.rarities.flatMap((rarity) => rarity.cards.map((card) => [card.productId, { card, rarity, set }])))
+  );
+  let openCard = null;
 
   function readHash() {
     const params = new URLSearchParams(location.hash.slice(1));
@@ -50,7 +71,10 @@
   function writeHash() {
     let hash = `#set=${state.set.id}&product=${state.product.id}`;
     if (priceMode === "retail") hash += "&prices=retail";
+    if (opts.fees) hash += "&fees=1";
+    if (opts.bulk) hash += "&bulk=1";
     if (state.customPrice !== null) hash += `&price=${state.customPrice}`;
+    if (openCard) hash += `&card=${openCard.productId}`;
     history.replaceState(null, "", hash);
   }
 
@@ -138,7 +162,7 @@
 
   function renderResults() {
     const parts = components(state.product);
-    const a = window.RipOdds.analyze(parts, currentPrice());
+    const a = window.RipOdds.analyze(parts, currentPrice(), 20000, opts);
     const verdict = a.expectedProfit >= 0 ? "rip" : "skip";
     const partSets = unique(parts.map((c) => c.set));
 
@@ -149,6 +173,9 @@
         `Contains ${parts.map((c) => `${c.packs} ${c.set.name}`).join(", ")} pack${a.packs > 1 ? "s" : ""}.`,
       priceMode === "retail" && !atRetail(state.product) && state.customPrice === null &&
         retailGap(state.product).note,
+      opts.fees && "Card values are what you'd net selling on TCGplayer, after fees and shipping.",
+      opts.bulk &&
+        `Includes bulk: about ${partSets.map((s) => `${money.format(s.bulkValuePerPack || 0)} per ${partSets.length > 1 ? `${s.name} ` : ""}pack`).join(", ")} at market price.`,
       ...partSets.map((s) => s.note),
     ]);
 
@@ -199,14 +226,14 @@
         </tbody>
       </table>
 
-      <h3 class="subhead">Top chase cards</h3>
+      <h3 class="subhead">Top chase cards <span class="subhead-hint">Pick one to see if it's worth ripping for</span></h3>
       <ol class="chase">
         ${window.RipOdds.chaseCards(parts)
           .map(
             (c) => `
           <li>
-            <a href="${tcgplayerUrl(c.productId)}" target="_blank" rel="noopener">${escapeHtml(c.name)}</a>
-            <span class="chase-meta">${a.multiSet ? `${escapeHtml(c.set)} · ` : ""}${c.rarity} · ${pct(c.chance)} chance in this ${escapeHtml(state.product.name)}</span>
+            <button type="button" class="chase-name" data-card="${c.productId}">${escapeHtml(c.name)}</button>
+            <span class="chase-meta">${a.multiSet ? `${escapeHtml(c.set.name)} · ` : ""}${c.rarity} · ${pct(c.chance)} chance in this ${escapeHtml(state.product.name)}</span>
             <span class="chase-price">${money.format(c.price)}</span>
           </li>`
           )
@@ -277,13 +304,13 @@
         .map((product) => ({
           set,
           product,
-          ...window.RipOdds.analyze(components(product), modePrice(product), 4000),
+          ...window.RipOdds.analyze(components(product), modePrice(product), 4000, opts),
         }))
     );
   }
 
   function renderLeaderboard() {
-    const ranking = (rankings[priceMode] ??= buildRanking());
+    const ranking = (rankings[optsKey()] ??= buildRanking());
     lbSub.textContent =
       priceMode === "retail"
         ? `Products from the last ${RETAIL_YEARS} years, ranked at retail (MSRP) prices. Pick one to open it in the calculator.`
@@ -355,6 +382,7 @@
         label: card.name,
         sub: `${set.name} · ${r.name} · ${money.format(card.price)}`,
         set,
+        card,
         price: card.price,
         rank: 2,
       }))
@@ -411,7 +439,115 @@
     searchInput.blur();
     update();
     document.getElementById("calculator").scrollIntoView({ behavior: "smooth" });
+    if (hit.card) showCard(hit.card.productId);
   }
+
+  // Card view: "rip for it, or buy the single?"
+  const cardImage = (productId) => `https://tcgplayer-cdn.tcgplayer.com/product/${productId}_200w.jpg`;
+
+  // Cheapest way to buy this set's packs in the current price mode: the product with the
+  // lowest price per pack among those that are just packs of this set.
+  function cheapestPack(set) {
+    const options = set.products
+      .filter((p) => p.contents.length === 1 && p.contents[0].set === set.id && !p.contents[0].bonus)
+      .map((p) => ({ product: p, price: modePrice(p) ?? p.price }))
+      .map((o) => ({ ...o, perPack: o.price / o.product.packs }));
+    return options.sort((a, b) => a.perPack - b.perPack)[0];
+  }
+
+  function showCard(productId) {
+    const entry = cardIndex.get(Number(productId));
+    if (!entry) return;
+    openCard = entry.card;
+    renderCard(entry);
+    if (!cardView.open) cardView.showModal();
+    writeHash();
+  }
+
+  function renderCard({ card, rarity, set }) {
+    const pack = cheapestPack(set);
+    const r = window.RipOdds.ripOrBuy(set, rarity, card, pack.perPack, opts);
+    const buy = r.verdict === "buy";
+    const n = (x) => Math.round(x).toLocaleString("en-US");
+
+    cardBody.innerHTML = `
+      <div class="card-top">
+        <img class="card-img" src="${cardImage(card.productId)}" alt="" loading="lazy"
+             onerror="this.remove()">
+        <div>
+          <h2 id="card-title">${escapeHtml(card.name)}</h2>
+          <p class="card-sub">${escapeHtml(set.name)} · ${escapeHtml(rarity.name)}</p>
+          <p class="card-price">${money.format(card.price)}</p>
+          ${opts.fees ? `<p class="card-sub">You'd net ${money.format(window.RipOdds.netAfterFees(card.price))} selling it</p>` : ""}
+          <p class="card-sub">1 in ${n(1 / r.perPack)} packs${rarity.estimated ? " (estimated)" : ""}</p>
+        </div>
+      </div>
+
+      <div class="verdict verdict-${buy ? "skip" : "rip"}">
+        <span class="verdict-label">${buy ? "Buy the single" : "Rip for it"}</span>
+      </div>
+
+      <ul class="card-facts">
+        <li>On average you'd open <strong>${n(r.packsToPull)} packs</strong> to pull it:
+          about <strong>${money.format(r.spend)}</strong> at ${money.format(pack.perPack)} a pack
+          (${escapeHtml(pack.product.name)}${modePrice(pack.product) ? ` at ${MODE_LABEL[priceMode]} price` : ""}).</li>
+        <li>Along the way you'd pull about <strong>${money.format(r.otherValue)}</strong> of other cards${opts.fees ? " (after fees)" : ""},
+          so it costs about <strong>${money.format(r.netCost)}</strong> net to rip for.</li>
+        <li>For the ${money.format(card.price)} the single costs, you could open
+          ${r.packsForPrice ? `${r.packsForPrice} pack${r.packsForPrice > 1 ? "s" : ""}: a <strong>${pct(r.chanceForPrice)}</strong> chance at it.` : "less than one pack."}</li>
+      </ul>
+
+      <table class="odds card-products">
+        <thead><tr><th>Product</th><th>Price</th><th>Chance of this card</th></tr></thead>
+        <tbody>
+          ${set.products
+            .map(
+              (p) => `
+            <tr>
+              <td>${escapeHtml(p.name)}</td>
+              <td>${modePrice(p) ? money.format(modePrice(p)) : money.format(p.price)}</td>
+              <td>${pct(window.RipOdds.cardChanceIn(components(p), set, rarity))}</td>
+            </tr>`
+            )
+            .join("")}
+        </tbody>
+      </table>
+
+      <p class="source">
+        <a href="${tcgplayerUrl(card.productId)}" target="_blank" rel="noopener">View on TCGplayer</a>.
+        Assumes every card in its rarity is equally likely.
+      </p>
+    `;
+  }
+
+  // Closing clears the card from the URL directly: the dialog's own "close" event is
+  // queued and can arrive late (or not at all in a background tab).
+  function closeCard() {
+    if (cardView.open) cardView.close();
+    openCard = null;
+    writeHash();
+  }
+
+  document.getElementById("card-close").addEventListener("click", closeCard);
+
+  // Esc
+  cardView.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeCard();
+  });
+  cardView.addEventListener("close", () => {
+    if (openCard) closeCard();
+  });
+
+  // Clicking the dim backdrop (the dialog element itself, outside its content) closes it.
+  cardView.addEventListener("click", (e) => {
+    if (e.target === cardView) closeCard();
+  });
+
+  results.addEventListener("click", (e) => {
+    const button = e.target.closest("[data-card]");
+    if (button) showCard(button.dataset.card);
+  });
 
   function update() {
     writeHash();
@@ -464,6 +600,20 @@
       renderLeaderboard();
     })
   );
+
+  function setOption(key, value) {
+    opts = { ...opts, [key]: value };
+    try {
+      localStorage.setItem(OPTS_KEY, JSON.stringify(opts));
+    } catch {}
+    update();
+    renderLeaderboard();
+  }
+
+  optFees.checked = opts.fees;
+  optBulk.checked = opts.bulk;
+  optFees.addEventListener("change", () => setOption("fees", optFees.checked));
+  optBulk.addEventListener("change", () => setOption("bulk", optBulk.checked));
 
   searchInput.addEventListener("input", runSearch);
 
@@ -525,6 +675,7 @@
 
   renderSetOptions();
   update();
+  if (initialParams.has("card")) showCard(initialParams.get("card"));
   // The leaderboard simulates every product, so let the calculator paint first.
   setTimeout(renderLeaderboard, 0);
 })();

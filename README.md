@@ -37,6 +37,18 @@ Pull rates come from the TCGplayer Authentication Center's published pack-openin
 (one article per set, linked in `pullRateSource`), except Shrouded Fable, which uses a community study.
 Rarities with no measured rate (Black White Rare, RGB Rare) are left out and noted on the site.
 
+## Odds model
+
+- Rarities sharing a pack slot (`slot` in `js/data.js`, assigned by the update script) are rolled as one
+  draw, so e.g. an Illustration Rare and a Special Illustration Rare can't come from the same slot.
+- **After selling fees** values every card at what you'd net on TCGplayer: 10.75% commission (capped at
+  $75), 2.5% + $0.30 processing, and ~$1 envelope / ~$5 tracked shipping (over $50). Constants are at the
+  top of `js/odds.js`.
+- **Count bulk** (off by default) adds each set's bulk value per pack: typical common, uncommon and reverse
+  holo prices, plus a regular rare when the Rare slot isn't a hit.
+- Each card's "rip or buy" view compares its price with the expected net cost of ripping for it
+  (packs needed at the cheapest per-pack price, minus the value of everything else pulled).
+
 ## Structure
 
 - `index.html` — page layout

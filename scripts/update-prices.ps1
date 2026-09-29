@@ -12,9 +12,12 @@ $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $base = 'https://tcgcsv.com/tcgplayer/3' # 3 = Pokemon
 
+# TCGCSV rejects PowerShell's default User-Agent, so identify the site instead.
+$userAgent = 'RipOrSkip/1.0 (+https://courtlandl.github.io/RipOrSkip/)'
+
 function Get-Json($url) {
   # Decode as UTF-8 explicitly so accented names (Pokemon, Flabebe) survive on PowerShell 5.1.
-  $response = Invoke-WebRequest $url -UseBasicParsing
+  $response = Invoke-WebRequest $url -UseBasicParsing -UserAgent $userAgent
   $text = [Text.Encoding]::UTF8.GetString($response.RawContentStream.ToArray())
   ($text | ConvertFrom-Json).results
 }
@@ -88,6 +91,65 @@ foreach ($g in Get-Json "$base/groups") {
   $releaseDates[[int]$g.groupId] = ([datetime]$g.publishedOn).ToString('yyyy-MM-dd')
 }
 
+# Which pack slot each rarity comes from. Rarities in the same slot can't appear together
+# (one card fills the slot), so the site rolls them as one draw. From TCGplayer's slot notes:
+#   rare     the Rare slot: Double/Ultra Rares; in Sword & Shield every V, full art, alt art and secret
+#   hit      Scarlet & Violet's second Reverse Holo slot: Illustration / Special Illustration / Hyper Rares
+#   reverse  the first Reverse Holo slot: ACE SPECs and Master Ball foils
+#   gallery  Sword & Shield's Trainer Gallery / Galarian Gallery slot
+# Rarities not listed (Radiant Rares, Poke Ball foils, Pikachu Rares...) roll on their own.
+$slotOf = @{}
+foreach ($name in 'Double Rare', 'Ultra Rare', "Pok$([char]0xE9)mon V", "Pok$([char]0xE9)mon VMAX", 'VMAX / VSTAR',
+  'Full Art', "Full Art Pok$([char]0xE9)mon V", 'Full Art Trainer', "Alt Art Pok$([char]0xE9)mon V", 'Alt Art VMAX',
+  'Rainbow Rare', 'Gold Rare', 'Texture Energy', 'Secret Rare') { $slotOf[$name] = 'rare' }
+foreach ($name in 'Illustration Rare', 'Special Illustration Rare', 'Hyper Rare', 'Mega Hyper Rare',
+  'Classic Collection', 'Futuristic Rare') { $slotOf[$name] = 'hit' }
+foreach ($name in 'ACE SPEC Rare', 'Master Ball Pattern') { $slotOf[$name] = 'reverse' }
+foreach ($name in 'Trainer Gallery', 'Trainer Gallery V / Trainer', 'Trainer Gallery Gold VMAX',
+  'Galarian Gallery', 'Galarian Gallery V / Trainer', 'Galarian Gallery Gold') { $slotOf[$name] = 'gallery' }
+
+# Non-hit cards per pack, for the bulk value: commons, uncommons and reverse holos.
+# The Rare slot adds a regular rare whenever it isn't a hit. A set can override with packLayout.
+$packLayouts = @{
+  'Mega Evolution'   = @{ common = 4; uncommon = 3; reverse = 2 }
+  'Scarlet & Violet' = @{ common = 4; uncommon = 3; reverse = 2 }
+  'Sword & Shield'   = @{ common = 4; uncommon = 3; reverse = 1 }
+}
+
+# Bulk value of one pack at market prices: typical common/uncommon (Normal printing),
+# typical Reverse Holofoil of the set's commons, uncommons and rares, and a regular rare
+# (Holofoil where one exists) in the share of packs whose Rare slot isn't a hit.
+function Get-BulkValue($set, $products, $prices, $rareSlotHitChance) {
+  $layout = if ($set.packLayout) { $set.packLayout } else { $packLayouts[$set.series] }
+  if (-not $layout) { return 0 }
+
+  $normal = @{}; $reverse = @{}; $holo = @{}
+  foreach ($p in $prices) {
+    if ($null -eq $p.marketPrice) { continue }
+    switch ($p.subTypeName) {
+      'Normal' { $normal[$p.productId] = [double]$p.marketPrice }
+      'Reverse Holofoil' { $reverse[$p.productId] = [double]$p.marketPrice }
+      'Holofoil' { $holo[$p.productId] = [double]$p.marketPrice }
+    }
+  }
+  $main = @($products | Where-Object { $_.group -eq $set.groupId -and $_.name -notlike '*Ball Pattern*' })
+  # Median, not mean: a few in-demand commons would otherwise inflate a typical pack's bulk.
+  function Avg($items, $map) {
+    $values = @($items | Where-Object { $map.ContainsKey($_.productId) } | ForEach-Object { $map[$_.productId] } | Sort-Object)
+    if ($values.Count) { $values[[math]::Floor($values.Count / 2)] } else { 0 }
+  }
+  $commons = @($main | Where-Object { (Get-Rarity $_) -eq 'Common' })
+  $uncommons = @($main | Where-Object { (Get-Rarity $_) -eq 'Uncommon' })
+  $rares = @($main | Where-Object { (Get-Rarity $_) -in 'Rare', 'Holo Rare' })
+  $rareValue = [math]::Max((Avg $rares $holo), (Avg $rares $normal))
+
+  $value = [double]$layout.common * (Avg $commons $normal) +
+    [double]$layout.uncommon * (Avg $uncommons $normal) +
+    [double]$layout.reverse * (Avg ($commons + $uncommons + $rares) $reverse) +
+    (1 - $rareSlotHitChance) * $rareValue
+  [math]::Round($value, 2)
+}
+
 foreach ($set in $config.sets) {
   Write-Host "Updating $($set.name)..."
   # Some sets keep part of their pack contents in a separate TCGplayer group
@@ -155,9 +217,18 @@ foreach ($set in $config.sets) {
       cards = $cards
     }
     if ($estimated) { $rarity.estimated = $true }
+    if ($slotOf.ContainsKey($rate.Name)) { $rarity.slot = $slotOf[$rate.Name] }
     $rarities += $rarity
   }
 
+  # A slot holds one card, so its rarities' rates can't add up past 100%.
+  $slotTotals = @{}
+  foreach ($r in $rarities) { if ($r.slot) { $slotTotals[$r.slot] += $r.perPack } }
+  foreach ($slot in $slotTotals.Keys) {
+    if ($slotTotals[$slot] -gt 1) { throw "$($set.name): '$slot' slot rates add up to more than 100%" }
+  }
+
+  $bulk = Get-BulkValue $set $products $prices ([double]$slotTotals['rare'])
   $sealed = Get-Sealed $set.products $priceById $set.id $set.name
 
   $sets += [ordered]@{
@@ -169,7 +240,7 @@ foreach ($set in $config.sets) {
     note = $set.note
     pullRateSource = $set.pullRateSource
     estimateSource = $set.estimateSource
-    bulkValuePerPack = $set.bulkValuePerPack
+    bulkValuePerPack = $bulk
     rarities = $rarities
     products = $sealed
   }

@@ -1,5 +1,5 @@
 {
-    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are the percent of packs containing each rarity, from the study in pullRateSource. A rate given as {percent, match} counts cards whose product name contains \u0027match\u0027 (e.g. Master Ball Pattern) instead of matching on rarity. bulkValuePerPack is an estimate of the non-hit cards in a pack. Optional \u0027note\u0027 is shown on the site for that set. Products with kind \u0027collection\u0027 only count their booster packs (promos and accessories aren\u0027t valued). A product\u0027s optional \u0027contents\u0027 lists packs by set (plus \u0027bonus\u0027 guaranteed cards) when it isn\u0027t just N packs of its own set; \u0027priceGroupId\u0027 says which TCGplayer group lists its price. \u0027collections\u0027 holds products whose packs span several sets.",
+    "_comment":  "Hand-maintained set config. Prices are filled in automatically by scripts/update-prices.ps1. pullRates are the percent of packs containing each rarity, from the study in pullRateSource. A rate given as {percent, match} counts cards whose product name contains \u0027match\u0027 (e.g. Master Ball Pattern) instead of matching on rarity. Bulk value per pack is worked out by the update script from real card prices (optional per-set packLayout overrides the cards-per-pack counts). Optional \u0027note\u0027 is shown on the site for that set. Products with kind \u0027collection\u0027 only count their booster packs (promos and accessories aren\u0027t valued). A product\u0027s optional \u0027contents\u0027 lists packs by set (plus \u0027bonus\u0027 guaranteed cards) when it isn\u0027t just N packs of its own set; \u0027priceGroupId\u0027 says which TCGplayer group lists its price. \u0027collections\u0027 holds products whose packs span several sets.",
     "sets":  [
                  {
                      "id":  "30th-celebration",
@@ -10,7 +10,6 @@
                      "extraGroupIds":  [
                                            24837
                                        ],
-                     "bulkValuePerPack":  0.3,
                      "note":  "Every pack has a guaranteed Pikachu Rare. RGB Rares aren\u0027t counted yet: their pull rate hasn\u0027t been measured.",
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
@@ -110,7 +109,6 @@
                      "series":  "Mega Evolution",
                      "year":  2026,
                      "groupId":  24688,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  4000,
@@ -167,7 +165,6 @@
                      "series":  "Mega Evolution",
                      "year":  2026,
                      "groupId":  24655,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8500,
@@ -224,7 +221,6 @@
                      "series":  "Mega Evolution",
                      "year":  2026,
                      "groupId":  24587,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  3500,
@@ -281,7 +277,6 @@
                      "series":  "Mega Evolution",
                      "year":  2026,
                      "groupId":  24541,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  2000,
@@ -340,7 +335,6 @@
                      "series":  "Mega Evolution",
                      "year":  2025,
                      "groupId":  24448,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  5000,
@@ -397,7 +391,6 @@
                      "series":  "Mega Evolution",
                      "year":  2025,
                      "groupId":  24380,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  5000,
@@ -454,7 +447,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2025,
                      "groupId":  24325,
-                     "bulkValuePerPack":  0.3,
                      "note":  "The Black White Rare rate (Victini, Zekrom ex) is a community estimate of about 1 in 496 packs. TCGplayer found none in 700+ packs, so it hasn\u0027t been measured precisely.",
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
@@ -520,7 +512,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2025,
                      "groupId":  24326,
-                     "bulkValuePerPack":  0.3,
                      "note":  "The Black White Rare rate (Victini, Reshiram ex) is a community estimate of about 1 in 496 packs. TCGplayer found none in 700+ packs, so it hasn\u0027t been measured precisely.",
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
@@ -586,7 +577,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2025,
                      "groupId":  24269,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -643,7 +633,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2025,
                      "groupId":  24073,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -700,7 +689,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2025,
                      "groupId":  23821,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "url":  "https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Prismatic-Evolutions-Pull-Rates/d94889ea-f76a-4a13-b74d-5b0b071220a7/"
@@ -765,7 +753,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23651,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -823,7 +810,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23537,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -881,7 +867,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23529,
-                     "bulkValuePerPack":  0.3,
                      "note":  "TCGplayer hasn\u0027t published rates for this set, so these come from a smaller community study. The Double Rare rate is assumed to match other 2024 sets.",
                      "pullRateSource":  {
                                             "name":  "Dripshop community openings",
@@ -933,7 +918,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23473,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -991,7 +975,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23381,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1049,7 +1032,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2024,
                      "groupId":  23353,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  1500,
@@ -1117,7 +1099,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2023,
                      "groupId":  23286,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1174,7 +1155,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2023,
                      "groupId":  23237,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  1500,
@@ -1241,7 +1221,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2023,
                      "groupId":  23228,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1298,7 +1277,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2023,
                      "groupId":  23120,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1355,7 +1333,6 @@
                      "series":  "Scarlet \u0026 Violet",
                      "year":  2023,
                      "groupId":  22873,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1415,7 +1392,6 @@
                      "extraGroupIds":  [
                                            17689
                                        ],
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  1900,
@@ -1500,7 +1476,6 @@
                      "extraGroupIds":  [
                                            17674
                                        ],
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1601,7 +1576,6 @@
                      "extraGroupIds":  [
                                            3172
                                        ],
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1702,7 +1676,6 @@
                      "extraGroupIds":  [
                                            3068
                                        ],
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
@@ -1788,7 +1761,6 @@
                      "series":  "Sword \u0026 Shield",
                      "year":  2021,
                      "groupId":  2848,
-                     "bulkValuePerPack":  0.3,
                      "pullRateSource":  {
                                             "name":  "TCGplayer Authentication Center",
                                             "packs":  8000,
