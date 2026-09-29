@@ -20,6 +20,10 @@ Prices are TCGplayer market prices from [TCGCSV](https://tcgcsv.com), which repu
 - `scripts/update-prices.ps1` — reads `data/sets.json`, fetches card and sealed prices, writes `js/data.js`
 - `js/data.js` — **generated**, don't edit by hand
 
+Each product can carry a `retail` MSRP, used when the site's price switch is set to Retail. Era defaults and
+product-specific MSRPs are set in `data/sets.json`; products without one fall back to market price in the
+calculator and are left out of the retail leaderboard.
+
 Premium collections (SPCs, UPCs, Premium Collections) are products with `"kind": "collection"`; only their
 booster packs are valued. A product whose packs aren't just N packs of its own set lists them in `contents`
 (e.g. the 30th Celebration UPC's bonus Classic Collection pack). Collections mixing several sets live under

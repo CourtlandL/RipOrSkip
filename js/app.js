@@ -19,7 +19,12 @@
   const lbList = document.getElementById("lb-list");
   const lbSort = document.getElementById("lb-sort");
   const lbToggle = document.getElementById("lb-toggle");
+  const lbSub = document.getElementById("lb-sub");
+  const searchInput = document.getElementById("search");
+  const searchResults = document.getElementById("search-results");
+  const modeButtons = document.querySelectorAll(".price-mode button");
   const LB_TOP = 10;
+  const MODE_LABEL = { market: "market", retail: "retail (MSRP)" };
 
   const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
   const pct = (x) =>
@@ -29,8 +34,10 @@
   const escapeHtml = (s) =>
     s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-  // customPrice is null when using the market price.
+  // customPrice is null unless the user typed their own price.
+  // priceMode ("market" or "retail") picks which price everything is judged against.
   let state = readHash();
+  let priceMode = new URLSearchParams(location.hash.slice(1)).get("prices") === "retail" ? "retail" : "market";
 
   function readHash() {
     const params = new URLSearchParams(location.hash.slice(1));
@@ -42,12 +49,22 @@
 
   function writeHash() {
     let hash = `#set=${state.set.id}&product=${state.product.id}`;
+    if (priceMode === "retail") hash += "&prices=retail";
     if (state.customPrice !== null) hash += `&price=${state.customPrice}`;
     history.replaceState(null, "", hash);
   }
 
+  // The product's price in the current mode, or undefined when it has no MSRP on file.
+  const modePrice = (product) => (priceMode === "retail" ? product.retail : product.price);
+
   function currentPrice() {
-    return state.customPrice ?? state.product.price;
+    return state.customPrice ?? modePrice(state.product) ?? state.product.price;
+  }
+
+  function priceLabel() {
+    if (state.customPrice !== null) return "Your price";
+    if (priceMode === "retail" && state.product.retail) return "Retail price";
+    return "Market price";
   }
 
   function renderPriceInput() {
@@ -55,8 +72,14 @@
     if (document.activeElement !== priceInput) {
       priceInput.value = currentPrice().toFixed(2);
     }
+    const base = modePrice(state.product) ?? state.product.price;
+    const kind = modePrice(state.product) ? MODE_LABEL[priceMode] : "market";
     priceReset.hidden = state.customPrice === null;
-    priceReset.textContent = `Use market price (${money.format(state.product.price)})`;
+    priceReset.textContent = `Use ${kind} price (${money.format(base)})`;
+  }
+
+  function renderModeButtons() {
+    modeButtons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === priceMode)));
   }
 
   // Grouped by series, keeping the order sets appear in the data.
@@ -83,7 +106,7 @@
         <button type="button" class="product${p.id === state.product.id ? " is-active" : ""}"
                 data-id="${p.id}" aria-pressed="${p.id === state.product.id}">
           <span class="product-name">${escapeHtml(p.name)}</span>
-          <span class="product-meta">${p.packs} pack${p.packs > 1 ? "s" : ""} · ${money.format(p.price)}</span>
+          <span class="product-meta">${p.packs} pack${p.packs > 1 ? "s" : ""} · ${modePrice(p) ? money.format(modePrice(p)) : "no MSRP"}</span>
         </button>`
       )
       .join("");
@@ -100,6 +123,8 @@
         `Only the ${a.packs} booster packs are counted. Promo cards and accessories aren't included in the value.`,
       a.multiSet &&
         `Contains ${parts.map((c) => `${c.packs} ${c.set.name}`).join(", ")} pack${a.packs > 1 ? "s" : ""}.`,
+      priceMode === "retail" && !state.product.retail && state.customPrice === null &&
+        "No retail price (MSRP) on file for this product, so it's shown at market price.",
       ...partSets.map((s) => s.note),
     ]);
 
@@ -114,7 +139,7 @@
       ${meter(a.valueRatio)}
 
       <div class="stats">
-        ${stat(state.customPrice === null ? "Market price" : "Your price", money.format(a.price))}
+        ${stat(priceLabel(), money.format(a.price))}
         ${stat("Expected value", money.format(a.expectedValue))}
         ${stat("Expected profit", signedMoney(a.expectedProfit), a.expectedProfit >= 0 ? "pos" : "neg")}
         ${stat("Chance of profit", pct(a.profitChance))}
@@ -210,8 +235,9 @@
       </div>`;
   }
 
-  // Leaderboard: every set × product at market price. Computed once, re-sorted on demand.
-  let ranking = null;
+  // Leaderboard: every set × product at the current mode's price. Computed once per mode,
+  // re-sorted on demand. In retail mode, products with no MSRP on file are left out.
+  const rankings = {};
   let lbShowAll = false;
 
   const lbSorts = {
@@ -221,17 +247,20 @@
   };
 
   function buildRanking() {
-    ranking = sets.flatMap((set) =>
-      set.products.map((product) => ({
-        set,
-        product,
-        ...window.RipOdds.analyze(components(product), product.price, 4000),
-      }))
+    return sets.flatMap((set) =>
+      set.products
+        .filter((product) => modePrice(product))
+        .map((product) => ({
+          set,
+          product,
+          ...window.RipOdds.analyze(components(product), modePrice(product), 4000),
+        }))
     );
   }
 
   function renderLeaderboard() {
-    if (!ranking) buildRanking();
+    const ranking = (rankings[priceMode] ??= buildRanking());
+    lbSub.textContent = `Every set and product, ranked at ${MODE_LABEL[priceMode]} prices. Pick one to open it in the calculator.`;
     const sorted = [...ranking].sort(lbSorts[lbSort.value]);
     const shown = lbShowAll ? sorted : sorted.slice(0, LB_TOP);
 
@@ -265,8 +294,101 @@
     lbToggle.textContent = lbShowAll ? `Show top ${LB_TOP}` : `Show all ${ranking.length}`;
   }
 
+  // Search: sets, products and cards, matched on every word typed (accents ignored).
+  const fold = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+  // Common shorthand people search with, added to product names.
+  const ABBREVIATIONS = [
+    [/ultra-premium collection/i, "upc"],
+    [/super-premium collection/i, "spc"],
+    [/premium collection/i, "pc"],
+    [/elite trainer box/i, "etb"],
+    [/center etb/i, "pc etb pcetb"],
+    [/booster box/i, "bb"],
+  ];
+  const aliases = (name) => ABBREVIATIONS.filter(([re]) => re.test(name)).map(([, a]) => a).join(" ");
+
+  // Words that match everything, so typing them shouldn't narrow results.
+  const FILLER = new Set(["pokemon", "tcg", "the", "of"]);
+
+  const searchIndex = sets.flatMap((set) => [
+    { kind: "Set", label: set.name, sub: `${set.series} · ${set.year}`, set, rank: 0 },
+    ...set.products.map((product) => ({
+      kind: "Product",
+      label: `${set.name} ${product.name}`,
+      sub: `${product.packs} pack${product.packs > 1 ? "s" : ""}`,
+      set,
+      product,
+      extra: aliases(product.name),
+      rank: 1,
+    })),
+    ...set.rarities.flatMap((r) =>
+      r.cards.map((card) => ({
+        kind: "Card",
+        label: card.name,
+        sub: `${set.name} · ${r.name} · ${money.format(card.price)}`,
+        set,
+        price: card.price,
+        rank: 2,
+      }))
+    ),
+  ]).map((entry) => ({
+    ...entry,
+    haystack: fold(`${entry.label} ${entry.set.name} ${entry.set.series} ${entry.extra ?? ""}`),
+  }));
+
+  let searchHits = [];
+  let searchActive = -1;
+
+  function runSearch() {
+    const words = fold(searchInput.value).split(/\s+/).filter((w) => w && !FILLER.has(w));
+    searchHits = words.length
+      ? searchIndex
+          .filter((e) => words.every((w) => e.haystack.includes(w)))
+          .sort((a, b) => a.rank - b.rank || (b.price ?? 0) - (a.price ?? 0))
+          .slice(0, 8)
+      : [];
+    searchActive = searchHits.length ? 0 : -1;
+    renderSearch();
+  }
+
+  function renderSearch() {
+    const open = searchInput.value.trim() !== "";
+    searchResults.hidden = !open;
+    searchInput.setAttribute("aria-expanded", String(open));
+    searchResults.innerHTML = searchHits.length
+      ? searchHits
+          .map(
+            (e, i) => `
+          <li role="option" id="search-${i}" data-index="${i}" aria-selected="${i === searchActive}"
+              class="${i === searchActive ? "is-active" : ""}">
+            <span class="search-kind">${e.kind}</span>
+            <span class="search-label">${escapeHtml(e.label)}</span>
+            <span class="search-sub">${escapeHtml(e.sub)}</span>
+          </li>`
+          )
+          .join("")
+      : `<li class="search-empty">No matches</li>`;
+    if (searchActive >= 0) searchInput.setAttribute("aria-activedescendant", `search-${searchActive}`);
+    else searchInput.removeAttribute("aria-activedescendant");
+  }
+
+  function pickSearchHit(hit) {
+    const product =
+      hit.product || hit.set.products.find((p) => p.id === state.product.id) || hit.set.products[0];
+    state = { set: hit.set, product, customPrice: null };
+    setSelect.value = hit.set.id;
+    searchInput.value = "";
+    searchHits = [];
+    renderSearch();
+    searchInput.blur();
+    update();
+    document.getElementById("calculator").scrollIntoView({ behavior: "smooth" });
+  }
+
   function update() {
     writeHash();
+    renderModeButtons();
     renderProducts();
     renderPriceInput();
     renderResults();
@@ -293,7 +415,8 @@
     if (!(price >= 0)) return;
     clearTimeout(priceTimer);
     priceTimer = setTimeout(() => {
-      state.customPrice = Math.abs(price - state.product.price) < 0.005 ? null : price;
+      const base = modePrice(state.product) ?? state.product.price;
+      state.customPrice = Math.abs(price - base) < 0.005 ? null : price;
       update();
     }, 250);
   });
@@ -303,6 +426,51 @@
   priceReset.addEventListener("click", () => {
     state.customPrice = null;
     update();
+  });
+
+  modeButtons.forEach((button) =>
+    button.addEventListener("click", () => {
+      if (button.dataset.mode === priceMode) return;
+      priceMode = button.dataset.mode;
+      state.customPrice = null;
+      update();
+      renderLeaderboard();
+    })
+  );
+
+  searchInput.addEventListener("input", runSearch);
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      if (!searchHits.length) return;
+      e.preventDefault();
+      const step = e.key === "ArrowDown" ? 1 : -1;
+      searchActive = (searchActive + step + searchHits.length) % searchHits.length;
+      renderSearch();
+    } else if (e.key === "Enter" && searchActive >= 0) {
+      e.preventDefault();
+      pickSearchHit(searchHits[searchActive]);
+    } else if (e.key === "Escape") {
+      searchInput.value = "";
+      runSearch();
+    }
+  });
+
+  // mousedown (not click) so the pick happens before the input loses focus.
+  searchResults.addEventListener("mousedown", (e) => {
+    const item = e.target.closest("[data-index]");
+    if (!item) return;
+    e.preventDefault();
+    pickSearchHit(searchHits[Number(item.dataset.index)]);
+  });
+
+  searchInput.addEventListener("blur", () => {
+    searchResults.hidden = true;
+    searchInput.setAttribute("aria-expanded", "false");
+  });
+
+  searchInput.addEventListener("focus", () => {
+    if (searchInput.value.trim()) renderSearch();
   });
 
   lbSort.addEventListener("change", renderLeaderboard);

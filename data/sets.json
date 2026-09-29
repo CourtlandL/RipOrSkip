@@ -30,25 +30,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  696613
+                                          "productId":  696613,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  704171
+                                          "productId":  704171,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  704143
+                                          "productId":  704143,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  704144
+                                          "productId":  704144,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "upc-day",
@@ -67,7 +71,8 @@
                                                                              }
                                                                          ]
                                                            }
-                                                       ]
+                                                       ],
+                                          "retail":  179.99
                                       },
                                       {
                                           "id":  "upc-night",
@@ -86,14 +91,16 @@
                                                                              }
                                                                          ]
                                                            }
-                                                       ]
+                                                       ],
+                                          "retail":  179.99
                                       },
                                       {
                                           "id":  "ditto",
                                           "name":  "Ditto Premium Collection",
                                           "packs":  8,
                                           "productId":  704189,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  39.99
                                       }
                                   ]
                  },
@@ -121,31 +128,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  692944
+                                          "productId":  692944,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  692942
+                                          "productId":  692942,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  692947
+                                          "productId":  692947,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  692949
+                                          "productId":  692949,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  692939
+                                          "productId":  692939,
+                                          "retail":  161.64
                                       }
                                   ]
                  },
@@ -173,31 +185,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  684446
+                                          "productId":  684446,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  684456
+                                          "productId":  684456,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  684450
+                                          "productId":  684450,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  684452
+                                          "productId":  684452,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  684444
+                                          "productId":  684444,
+                                          "retail":  161.64
                                       }
                                   ]
                  },
@@ -225,31 +242,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  672398
+                                          "productId":  672398,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  672396
+                                          "productId":  672396,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  672401
+                                          "productId":  672401,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  672404
+                                          "productId":  672404,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  672394
+                                          "productId":  672394,
+                                          "retail":  161.64
                                       }
                                   ]
                  },
@@ -278,32 +300,37 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  672434
+                                          "productId":  672434,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  668541
+                                          "productId":  668541,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  668496
+                                          "productId":  668496,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  668497
+                                          "productId":  668497,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "focused-fighters",
                                           "name":  "Focused Fighters Premium Collection",
                                           "packs":  14,
                                           "productId":  706959,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  54.98
                                       }
                                   ]
                  },
@@ -331,31 +358,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  654144
+                                          "productId":  654144,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  654160
+                                          "productId":  654160,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  654136
+                                          "productId":  654136,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  654135
+                                          "productId":  654135,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  654137
+                                          "productId":  654137,
+                                          "retail":  161.64
                                       }
                                   ]
                  },
@@ -383,31 +415,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  644352
+                                          "productId":  644352,
+                                          "retail":  4.49
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  644362
+                                          "productId":  644362,
+                                          "retail":  26.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  644279
+                                          "productId":  644279,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  648415
+                                          "productId":  648415,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  644298
+                                          "productId":  644298,
+                                          "retail":  161.64
                                       }
                                   ]
                  },
@@ -447,25 +484,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  630434
+                                          "productId":  630434,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  630431
+                                          "productId":  630431,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  630686
+                                          "productId":  630686,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  630687
+                                          "productId":  630687,
+                                          "retail":  59.99
                                       }
                                   ],
                      "estimateSource":  {
@@ -509,25 +550,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  630699
+                                          "productId":  630699,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  630696
+                                          "productId":  630696,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  630689
+                                          "productId":  630689,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  630688
+                                          "productId":  630688,
+                                          "retail":  59.99
                                       }
                                   ],
                      "estimateSource":  {
@@ -559,31 +604,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  624683
+                                          "productId":  624683,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  625670
+                                          "productId":  625670,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  624676
+                                          "productId":  624676,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  624675
+                                          "productId":  624675,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  624679
+                                          "productId":  624679,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -611,31 +661,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  610935
+                                          "productId":  610935,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  610953
+                                          "productId":  610953,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  610930
+                                          "productId":  610930,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  610929
+                                          "productId":  610929,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  610931
+                                          "productId":  610931,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -670,32 +725,37 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  593294
+                                          "productId":  593294,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  600518
+                                          "productId":  600518,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  593355
+                                          "productId":  593355,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  593324
+                                          "productId":  593324,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "spc",
                                           "name":  "Super-Premium Collection",
                                           "packs":  15,
                                           "productId":  622770,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  89.99
                                       }
                                   ]
                  },
@@ -724,31 +784,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  565604
+                                          "productId":  565604,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  565629
+                                          "productId":  565629,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  565630
+                                          "productId":  565630,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  565632
+                                          "productId":  565632,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  565606
+                                          "productId":  565606,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -777,31 +842,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  557331
+                                          "productId":  557331,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  557345
+                                          "productId":  557345,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  557350
+                                          "productId":  557350,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  557340
+                                          "productId":  557340,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  557354
+                                          "productId":  557354,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -831,25 +901,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  552997
+                                          "productId":  552997,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  553031
+                                          "productId":  553031,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  552999
+                                          "productId":  552999,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  552998
+                                          "productId":  552998,
+                                          "retail":  59.99
                                       }
                                   ]
                  },
@@ -878,31 +952,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  543843
+                                          "productId":  543843,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  543852
+                                          "productId":  543852,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  543845
+                                          "productId":  543845,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  543844
+                                          "productId":  543844,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  543846
+                                          "productId":  543846,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -931,31 +1010,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  532841
+                                          "productId":  532841,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  541017
+                                          "productId":  541017,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  532845
+                                          "productId":  532845,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  538775
+                                          "productId":  538775,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  536225
+                                          "productId":  536225,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -985,32 +1069,37 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  528038
+                                          "productId":  528038,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  528771
+                                          "productId":  528771,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  528040
+                                          "productId":  528040,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  528039
+                                          "productId":  528039,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "premium",
                                           "name":  "Premium Collection",
                                           "packs":  8,
                                           "productId":  528079,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  39.99
                                       },
                                       {
                                           "id":  "great-tusk-iron-treads",
@@ -1045,31 +1134,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  512822
+                                          "productId":  512822,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  512820
+                                          "productId":  512820,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  512815
+                                          "productId":  512815,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  512809
+                                          "productId":  512809,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  512821
+                                          "productId":  512821,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1097,39 +1191,45 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  504467
+                                          "productId":  504467,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  502000
+                                          "productId":  502000,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  503313
+                                          "productId":  503313,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  501999
+                                          "productId":  501999,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "upc",
                                           "name":  "Ultra-Premium Collection",
                                           "packs":  16,
                                           "productId":  502005,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  119.99
                                       },
                                       {
                                           "id":  "blooming-waters",
                                           "name":  "Blooming Waters Premium Collection",
                                           "packs":  12,
                                           "productId":  609597,
-                                          "kind":  "collection"
+                                          "kind":  "collection",
+                                          "retail":  59.99
                                       }
                                   ]
                  },
@@ -1157,31 +1257,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  501256
+                                          "productId":  501256,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  501263
+                                          "productId":  501263,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  501264
+                                          "productId":  501264,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  501266
+                                          "productId":  501266,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  501257
+                                          "productId":  501257,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1209,31 +1314,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  493976
+                                          "productId":  493976,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  496914
+                                          "productId":  496914,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  493974
+                                          "productId":  493974,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  493973
+                                          "productId":  493973,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  493975
+                                          "productId":  493975,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1261,31 +1371,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  476451
+                                          "productId":  476451,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  478258
+                                          "productId":  478258,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  9,
-                                          "productId":  478336
+                                          "productId":  478336,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  11,
-                                          "productId":  478756
+                                          "productId":  478756,
+                                          "retail":  59.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  476452
+                                          "productId":  476452,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1348,25 +1463,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  453466
+                                          "productId":  453466,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  527562
+                                          "productId":  527562,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  10,
-                                          "productId":  453470
+                                          "productId":  453470,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB Plus",
                                           "packs":  12,
-                                          "productId":  454246
+                                          "productId":  454246,
+                                          "retail":  64.99
                                       }
                                   ]
                  },
@@ -1438,31 +1557,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  283388
+                                          "productId":  283388,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  283396
+                                          "productId":  283396,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  8,
-                                          "productId":  283401
+                                          "productId":  283401,
+                                          "retail":  39.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  10,
-                                          "productId":  285860
+                                          "productId":  285860,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  283389
+                                          "productId":  283389,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1534,31 +1658,36 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  277325
+                                          "productId":  277325,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "bundle",
                                           "name":  "Booster Bundle",
                                           "packs":  6,
-                                          "productId":  278819
+                                          "productId":  278819,
+                                          "retail":  23.94
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  8,
-                                          "productId":  277335
+                                          "productId":  277335,
+                                          "retail":  39.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  10,
-                                          "productId":  277336
+                                          "productId":  277336,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  277324
+                                          "productId":  277324,
+                                          "retail":  143.64
                                       }
                                   ]
                  },
@@ -1624,25 +1753,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  265521
+                                          "productId":  265521,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  8,
-                                          "productId":  265527
+                                          "productId":  265527,
+                                          "retail":  39.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  10,
-                                          "productId":  265528
+                                          "productId":  265528,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  265519
+                                          "productId":  265519,
+                                          "retail":  143.64
                                       }
                                   ],
                      "note":  "Radiant Rares (Radiant Greninja, Heatran, Hawlucha) aren\u0027t counted: TCGplayer\u0027s study didn\u0027t measure their rate."
@@ -1696,25 +1829,29 @@
                                           "id":  "pack",
                                           "name":  "Booster Pack",
                                           "packs":  1,
-                                          "productId":  244337
+                                          "productId":  244337,
+                                          "retail":  3.99
                                       },
                                       {
                                           "id":  "etb",
                                           "name":  "Elite Trainer Box",
                                           "packs":  8,
-                                          "productId":  242443
+                                          "productId":  242443,
+                                          "retail":  39.99
                                       },
                                       {
                                           "id":  "pc-etb",
                                           "name":  "Pokémon Center ETB",
                                           "packs":  10,
-                                          "productId":  245352
+                                          "productId":  245352,
+                                          "retail":  49.99
                                       },
                                       {
                                           "id":  "box",
                                           "name":  "Booster Box",
                                           "packs":  36,
-                                          "productId":  242436
+                                          "productId":  242436,
+                                          "retail":  143.64
                                       }
                                   ]
                  }
@@ -1753,7 +1890,8 @@
                                                                       "packs":  2
                                                                   }
                                                               ],
-                                                 "priceGroupId":  2374
+                                                 "priceGroupId":  2374,
+                                                 "retail":  119.99
                                              }
                                          ]
                         },
@@ -1778,7 +1916,8 @@
                                                                       "packs":  6
                                                                   }
                                                               ],
-                                                 "priceGroupId":  24325
+                                                 "priceGroupId":  24325,
+                                                 "retail":  49.99
                                              }
                                          ]
                         }

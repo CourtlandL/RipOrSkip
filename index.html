@@ -14,9 +14,21 @@
   </header>
 
   <main>
+    <div class="toolbar">
+      <div class="search" role="search">
+        <input id="search" type="search" placeholder="Search sets, products or cards…" autocomplete="off"
+               aria-label="Search sets, products or cards" aria-controls="search-results" aria-expanded="false">
+        <ul id="search-results" class="search-results" role="listbox" hidden></ul>
+      </div>
+      <div class="price-mode" role="group" aria-label="Prices">
+        <button type="button" data-mode="market" aria-pressed="true">Market</button>
+        <button type="button" data-mode="retail" aria-pressed="false">Retail</button>
+      </div>
+    </div>
+
     <p class="notice">
-      Prices are TCGplayer market prices, updated daily (last update <span id="updated"></span>).
-      Pull rates come from large pack-opening studies. Each set lists its source.
+      Market prices are TCGplayer market prices, updated daily (last update <span id="updated"></span>).
+      Retail prices are MSRP. Pull rates come from large pack-opening studies. Each set lists its source.
     </p>
 
     <section class="leaderboard" aria-labelledby="lb-title">
@@ -31,7 +43,7 @@
           </select>
         </label>
       </div>
-      <p class="lb-sub">Every set and product, ranked at current market prices. Pick one to open it in the calculator.</p>
+      <p class="lb-sub" id="lb-sub"></p>
       <ol id="lb-list" class="lb-list"></ol>
       <button id="lb-toggle" type="button" class="link-button"></button>
     </section>

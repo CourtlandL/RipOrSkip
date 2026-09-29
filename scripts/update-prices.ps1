@@ -72,6 +72,7 @@ function Get-Sealed($items, $priceById, $ownerId, $label) {
       contents = @($contents) # keep a one-item list as a JSON array
     }
     if ($item.kind) { $product.kind = $item.kind }
+    if ($item.retail) { $product.retail = $item.retail }
     $sealed += $product
   }
   , $sealed
